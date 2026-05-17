@@ -1,0 +1,28 @@
+# BasicAdviceFlow
+
+main: kit: flow: BasicAdviceFlow:
+{
+  entity: "advice",
+  kind: "basic",
+  name: "BasicAdviceFlow",
+  step: [
+    {
+      input: {
+        ref: "advice_ref01",
+        srcdatavar: "advice_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-advice_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAdviceFlow"
+}

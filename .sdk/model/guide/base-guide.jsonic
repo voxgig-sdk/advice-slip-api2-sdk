@@ -1,0 +1,25 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: advice: {
+    path: "/advice": {
+      op: load: method: *GET
+    }
+    path: "/advice/{slip_id}": {
+      rename: param: "slip_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/advice/search/{query}": {
+      rename: param: "query": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

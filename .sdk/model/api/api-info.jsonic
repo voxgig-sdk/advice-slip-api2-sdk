@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://api.adviceslip.com"
+      }
+      description: "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics. Users can easily retrieve advice slips in a straightforward manner through simple API calls."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.adviceslip.com"
+        }
+      ]
+      title: "Advice Slip API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

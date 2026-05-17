@@ -1,0 +1,223 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Advice Slip API",
+    "description": "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics. Users can easily retrieve advice slips in a straightforward manner through simple API calls.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://api.adviceslip.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.adviceslip.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/advice": {
+      "get": {
+        "summary": "Get random advice",
+        "description": "Returns a random advice slip",
+        "operationId": "getRandomAdvice",
+        "responses": {
+          "200": {
+            "description": "Successful response with random advice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdviceResponse"
+                },
+                "example": {
+                  "slip": {
+                    "id": 123,
+                    "advice": "Always be yourself."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/advice/{slip_id}": {
+      "get": {
+        "summary": "Get advice by ID",
+        "description": "Returns a specific advice slip by its ID",
+        "operationId": "getAdviceById",
+        "parameters": [
+          {
+            "name": "slip_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the advice slip to retrieve",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with specific advice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdviceResponse"
+                },
+                "example": {
+                  "slip": {
+                    "id": 123,
+                    "advice": "Always be yourself."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Advice slip not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/advice/search/{query}": {
+      "get": {
+        "summary": "Search advice by query",
+        "description": "Search for advice slips matching a search term",
+        "operationId": "searchAdvice",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "path",
+            "required": true,
+            "description": "The search term to find matching advice slips",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with matching advice slips",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                },
+                "example": {
+                  "total_results": "2",
+                  "query": "love",
+                  "slips": [
+                    {
+                      "id": 56,
+                      "advice": "Love yourself first."
+                    },
+                    {
+                      "id": 89,
+                      "advice": "Spread love wherever you go."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No advice slips found matching the search term",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeResponse"
+                },
+                "example": {
+                  "message": {
+                    "type": "notice",
+                    "text": "No advice slips found matching that search term."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdviceSlip": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the advice slip"
+          },
+          "advice": {
+            "type": "string",
+            "description": "The advice text"
+          }
+        }
+      },
+      "AdviceResponse": {
+        "type": "object",
+        "properties": {
+          "slip": {
+            "$ref": "#/components/schemas/AdviceSlip"
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "total_results": {
+            "type": "string",
+            "description": "Total number of results found"
+          },
+          "query": {
+            "type": "string",
+            "description": "The search query used"
+          },
+          "slips": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdviceSlip"
+            }
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of message"
+          },
+          "text": {
+            "type": "string",
+            "description": "Message text"
+          }
+        }
+      },
+      "NoticeResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "$ref": "#/components/schemas/Message"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "$ref": "#/components/schemas/Message"
+          }
+        }
+      }
+    }
+  }
+}
