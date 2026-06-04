@@ -15,9 +15,6 @@ module AdviceSlipApi2Config
       },
       "options" => {
         "base" => "https://api.adviceslip.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
