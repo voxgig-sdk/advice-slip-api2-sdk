@@ -16,31 +16,7 @@ main: {
       ]
       title: "Advice Slip API"
       version: "1.0.0"
-      tagline: "Fetch random pieces of advice, look them up by ID, or search the slip catalogue"
-      homepage: "https://api.adviceslip.com"
-      docs_url: "https://api.adviceslip.com"
-      license_short: "Free to use; no authentication required. Operated by Tom Kiss."
-      license_md: `- The Advice Slip JSON API is provided free of charge by Tom Kiss (© 2013–2026).
-- No API key or authentication is required.
-- Responses are cached for 2 seconds, so repeat requests within that window return the same slip.
-- The creator suggests supporting the service via Ko-fi ("buy them a coffee or beer") if you find it useful.`
-      about_md: `The [Advice Slip JSON API](https://api.adviceslip.com) is a small, free public API that serves short pieces of advice ("slips"). It is run by Tom Kiss and, by its own count, hands out over 10 million pieces of advice each year.
-
-What you get from the API:
-
-- A random slip via \`GET /advice\`, returning a slip object with \`slip_id\` (integer) and \`advice\` (string).
-- A specific slip via \`GET /advice/{slip_id}\`.
-- Full-text search via \`GET /advice/search/{query}\`, returning \`total_results\`, the \`query\`, and an array of matching slip objects.
-- A daily RSS feed at \`/daily_adviceslip.rss\`.
-
-Operational notes: there is no authentication, and responses are cached for 2 seconds (a repeat call inside that window returns the same advice). Optional JSONP is supported via a \`callback\` query parameter. Error and notice responses use a \`message\` object with \`type\` (notice/warning/error) and \`text\` fields.
-
-Note: this slug is a duplicate of \`advice-slip\` and points at the same upstream API.`
-      entity_desc: {
-        advice: "An advice slip resource — fetch a random slip at `GET /advice` or a specific one at `GET /advice/{slip_id}`; each slip has a `slip_id` and an `advice` string."
-        search: "Full-text search over the slip catalogue at `GET /advice/search/{query}`, returning `total_results`, the `query`, and an array of matching slips."
-      }
-      auth: false
     }
   }
 }
+

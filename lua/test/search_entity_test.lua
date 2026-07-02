@@ -91,6 +91,7 @@ function search_basic_setup(extra)
     ["ADVICESLIPAPI__TEST_SEARCH_ENTID"] = idmap,
     ["ADVICESLIPAPI__TEST_LIVE"] = "FALSE",
     ["ADVICESLIPAPI__TEST_EXPLAIN"] = "FALSE",
+    ["ADVICESLIPAPI__APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function search_basic_setup(extra)
   if env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["ADVICESLIPAPI__APIKEY"],
       },
       extra or {},
     })

@@ -1,23 +1,8 @@
 # AdviceSlipApi2 SDK
 
-Fetch random pieces of advice, look them up by ID, or search the slip catalogue
+Advice Slip API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Advice Slip API
-
-The [Advice Slip JSON API](https://api.adviceslip.com) is a small, free public API that serves short pieces of advice ("slips"). It is run by Tom Kiss and, by its own count, hands out over 10 million pieces of advice each year.
-
-What you get from the API:
-
-- A random slip via `GET /advice`, returning a slip object with `slip_id` (integer) and `advice` (string).
-- A specific slip via `GET /advice/{slip_id}`.
-- Full-text search via `GET /advice/search/{query}`, returning `total_results`, the `query`, and an array of matching slip objects.
-- A daily RSS feed at `/daily_adviceslip.rss`.
-
-Operational notes: there is no authentication, and responses are cached for 2 seconds (a repeat call inside that window returns the same advice). Optional JSONP is supported via a `callback` query parameter. Error and notice responses use a `message` object with `type` (notice/warning/error) and `text` fields.
-
-Note: this slug is a duplicate of `advice-slip` and points at the same upstream API.
 
 ## Try it
 
@@ -51,27 +36,31 @@ gem install advice-slip-api2-sdk
 luarocks install advice-slip-api2-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { AdviceSlipApi2SDK } from 'advice-slip-api2'
 
-const client = new AdviceSlipApi2SDK({})
+const client = new AdviceSlipApi2SDK({
+  apikey: process.env.ADVICE-SLIP-API2_APIKEY,
+})
 
+// Load advice data
+const advice = await client.Advice().load({})
+console.log(advice.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Advice** | An advice slip resource — fetch a random slip at `GET /advice` or a specific one at `GET /advice/{slip_id}`; each slip has a `slip_id` and an `advice` string. | `/advice/{slip_id}` |
-| **Search** | Full-text search over the slip catalogue at `GET /advice/search/{query}`, returning `total_results`, the `query`, and an array of matching slips. | `/advice/search/{query}` |
+| **Advice** |  | `/advice/{slip_id}` |
+| **Search** |  | `/advice/search/{query}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from adviceslipapi2_sdk import AdviceSlipApi2SDK
 
-client = AdviceSlipApi2SDK({})
+client = AdviceSlipApi2SDK({
+    "apikey": os.environ.get("ADVICE-SLIP-API2_APIKEY"),
+})
 
 
 # Load a specific advice
-advice, err = client.Advice(None).load(
-    {"id": "example_id"}, None
-)
+advice, err = client.Advice().load({"id": "example_id"})
+print(advice)
 ```
 
 ### PHP
@@ -129,13 +120,14 @@ advice, err = client.Advice(None).load(
 <?php
 require_once 'adviceslipapi2_sdk.php';
 
-$client = new AdviceSlipApi2SDK([]);
+$client = new AdviceSlipApi2SDK([
+    "apikey" => getenv("ADVICE-SLIP-API2_APIKEY"),
+]);
 
 
 // Load a specific advice
-[$advice, $err] = $client->Advice(null)->load(
-    ["id" => "example_id"], null
-);
+[$advice, $err] = $client->Advice()->load(["id" => "example_id"]);
+print_r($advice);
 ```
 
 ### Golang
@@ -143,8 +135,13 @@ $client = new AdviceSlipApi2SDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/advice-slip-api2-sdk/go"
 
-client := sdk.NewAdviceSlipApi2SDK(map[string]any{})
+client := sdk.NewAdviceSlipApi2SDK(map[string]any{
+    "apikey": os.Getenv("ADVICE-SLIP-API2_APIKEY"),
+})
 
+// Load advice data
+advice, err := client.Advice(nil).Load(map[string]any{}, nil)
+fmt.Println(advice)
 ```
 
 ### Ruby
@@ -152,13 +149,14 @@ client := sdk.NewAdviceSlipApi2SDK(map[string]any{})
 ```ruby
 require_relative "AdviceSlipApi2_sdk"
 
-client = AdviceSlipApi2SDK.new({})
+client = AdviceSlipApi2SDK.new({
+  "apikey" => ENV["ADVICE-SLIP-API2_APIKEY"],
+})
 
 
 # Load a specific advice
-advice, err = client.Advice(nil).load(
-  { "id" => "example_id" }, nil
-)
+advice, err = client.Advice().load({ "id" => "example_id" })
+puts advice
 ```
 
 ### Lua
@@ -166,13 +164,14 @@ advice, err = client.Advice(nil).load(
 ```lua
 local sdk = require("advice-slip-api2_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("ADVICE-SLIP-API2_APIKEY"),
+})
 
 
 -- Load a specific advice
-local advice, err = client:Advice(nil):load(
-  { id = "example_id" }, nil
-)
+local advice, err = client:Advice():load({ id = "example_id" })
+print(advice)
 ```
 
 ## Unit testing in offline mode
@@ -191,25 +190,21 @@ const result = await client.Advice().load({ id: 'test01' })
 ### Python
 
 ```python
-client = AdviceSlipApi2SDK.test(None, None)
-result, err = client.Advice(None).load(
-    {"id": "test01"}, None
-)
+client = AdviceSlipApi2SDK.test()
+result, err = client.Advice().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = AdviceSlipApi2SDK::test(null, null);
-[$result, $err] = $client->Advice(null)->load(
-    ["id" => "test01"], null
-);
+$client = AdviceSlipApi2SDK::test();
+[$result, $err] = $client->Advice()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Advice(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -218,19 +213,15 @@ result, err := client.Advice(nil).Load(
 ### Ruby
 
 ```ruby
-client = AdviceSlipApi2SDK.test(nil, nil)
-result, err = client.Advice(nil).load(
-  { "id" => "test01" }, nil
-)
+client = AdviceSlipApi2SDK.test
+result, err = client.Advice().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Advice(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Advice():load({ id = "test01" })
 ```
 
 ## How it works
@@ -334,15 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Advice Slip API
-
-- Upstream: [https://api.adviceslip.com](https://api.adviceslip.com)
-
-- The Advice Slip JSON API is provided free of charge by Tom Kiss (© 2013–2026).
-- No API key or authentication is required.
-- Responses are cached for 2 seconds, so repeat requests within that window return the same slip.
-- The creator suggests supporting the service via Ko-fi ("buy them a coffee or beer") if you find it useful.
 
 ---
 

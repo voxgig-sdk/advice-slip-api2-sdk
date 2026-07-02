@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'ADVICESLIPAPI__TEST_ADVICE_ENTID': {},
     'ADVICESLIPAPI__TEST_LIVE': 'FALSE',
+    'ADVICESLIPAPI__APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.ADVICESLIPAPI__TEST_LIVE
 
   if (live) {
     const client = new AdviceSlipApi2SDK({
+      apikey: env.ADVICESLIPAPI__APIKEY,
     })
 
     let idmap: any = env['ADVICESLIPAPI__TEST_ADVICE_ENTID']
