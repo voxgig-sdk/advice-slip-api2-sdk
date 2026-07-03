@@ -10,7 +10,7 @@ The Lua SDK for the AdviceSlipApi2 API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install advice-slip-api2-sdk
+luarocks install voxgig-sdk-advice-slip-api2
 ```
 
 If the module is not yet published, add the source directory to

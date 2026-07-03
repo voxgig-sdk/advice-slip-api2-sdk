@@ -10,7 +10,7 @@ The TypeScript SDK for the AdviceSlipApi2 API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install advice-slip-api2
+npm install @voxgig-sdk/advice-slip-api2
 ```
 ## Tutorial: your first API call
 

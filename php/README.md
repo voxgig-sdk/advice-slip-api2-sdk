@@ -10,7 +10,7 @@ The PHP SDK for the AdviceSlipApi2 API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/advice-slip-api2-sdk
+composer require voxgig-sdk/advice-slip-api2
 ```
 
 

@@ -8,12 +8,14 @@ source = {
   dir = "advice-slip-api2-sdk/lua"
 }
 description = {
-  summary = "AdviceSlipApi2 SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Advice Slip public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/advice-slip-api2-sdk",
+  issues_url = "https://github.com/voxgig-sdk/advice-slip-api2-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "advice-slip-api2" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

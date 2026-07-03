@@ -10,7 +10,7 @@ The Python SDK for the AdviceSlipApi2 API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install advice-slip-api2-sdk
+pip install voxgig-sdk-advice-slip-api2
 ```
 
 Or install from source:
