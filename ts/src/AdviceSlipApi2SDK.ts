@@ -3,6 +3,8 @@
 import { AdviceEntity } from './entity/AdviceEntity'
 import { SearchEntity } from './entity/SearchEntity'
 
+export type * from './AdviceSlipApi2Types'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class AdviceSlipApi2SDK {
 
 
 
+  _advice?: AdviceEntity
+
+  // Idiomatic facade: `client.advice.list()` / `client.advice.load({ id })`.
+  get advice(): AdviceEntity {
+    return (this._advice ??= new AdviceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.advice` instead. */
   Advice(data?: any) {
     const self = this
     return new AdviceEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)

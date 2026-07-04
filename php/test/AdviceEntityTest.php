@@ -49,8 +49,7 @@ class AdviceEntityTest extends TestCase
         // LOAD
         $advice_ref01_ent = $client->Advice(null);
         $advice_ref01_match_dt0 = [];
-        [$advice_ref01_data_dt0_loaded, $err] = $advice_ref01_ent->load($advice_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $advice_ref01_data_dt0_loaded = $advice_ref01_ent->load($advice_ref01_match_dt0, null);
         $this->assertNotNull($advice_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function advice_basic_setup($extra)
         "ADVICESLIPAPI__TEST_ADVICE_ENTID" => $idmap,
         "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
         "ADVICESLIPAPI__TEST_EXPLAIN" => "FALSE",
-        "ADVICESLIPAPI__APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function advice_basic_setup($extra)
     if ($env["ADVICESLIPAPI__TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ADVICESLIPAPI__APIKEY"],
             ],
             $extra ?? [],
         ]);

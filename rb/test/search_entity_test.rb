@@ -42,8 +42,7 @@ class SearchEntityTest < Minitest::Test
     # LOAD
     search_ref01_ent = client.Search(nil)
     search_ref01_match_dt0 = {}
-    search_ref01_data_dt0_loaded, err = search_ref01_ent.load(search_ref01_match_dt0, nil)
-    assert_nil err
+    search_ref01_data_dt0_loaded = search_ref01_ent.load(search_ref01_match_dt0, nil)
     assert !search_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def search_basic_setup(extra)
     "ADVICESLIPAPI__TEST_SEARCH_ENTID" => idmap,
     "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
     "ADVICESLIPAPI__TEST_EXPLAIN" => "FALSE",
-    "ADVICESLIPAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def search_basic_setup(extra)
   if env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ADVICESLIPAPI__APIKEY"],
       },
       extra || {},
     ])

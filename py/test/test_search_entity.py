@@ -49,8 +49,7 @@ class TestSearchEntity:
         # LOAD
         search_ref01_ent = client.Search(None)
         search_ref01_match_dt0 = {}
-        search_ref01_data_dt0_loaded, err = search_ref01_ent.load(search_ref01_match_dt0, None)
-        assert err is None
+        search_ref01_data_dt0_loaded = search_ref01_ent.load(search_ref01_match_dt0, None)
         assert search_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _search_basic_setup(extra):
         "ADVICESLIPAPI__TEST_SEARCH_ENTID": idmap,
         "ADVICESLIPAPI__TEST_LIVE": "FALSE",
         "ADVICESLIPAPI__TEST_EXPLAIN": "FALSE",
-        "ADVICESLIPAPI__APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _search_basic_setup(extra):
     if env.get("ADVICESLIPAPI__TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ADVICESLIPAPI__APIKEY"),
             },
             extra or {},
         ])

@@ -117,7 +117,6 @@ func adviceBasicSetup(extra map[string]any) *entityTestSetup {
 		"ADVICESLIPAPI__TEST_ADVICE_ENTID": idmap,
 		"ADVICESLIPAPI__TEST_LIVE":      "FALSE",
 		"ADVICESLIPAPI__TEST_EXPLAIN":   "FALSE",
-		"ADVICESLIPAPI__APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ADVICESLIPAPI__TEST_ADVICE_ENTID"])
@@ -128,7 +127,6 @@ func adviceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["ADVICESLIPAPI__APIKEY"],
 			},
 			extra,
 		})

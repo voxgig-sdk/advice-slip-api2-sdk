@@ -9,9 +9,12 @@ The TypeScript SDK for the AdviceSlipApi2 API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/advice-slip-api2
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/advice-slip-api2-sdk/releases](https://github.com/voxgig-sdk/advice-slip-api2-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AdviceSlipApi2SDK } from 'advice-slip-api2'
+import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2'
 
-const client = new AdviceSlipApi2SDK({
-  apikey: process.env.ADVICE-SLIP-API2_APIKEY,
-})
+const client = new AdviceSlipApi2SDK()
 ```
 
-### 3. Load a advice
+### 3. Load an advice
 
 ```ts
-const result = await client.Advice().load({ id: 'example_id' })
+const result = await client.advice.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AdviceSlipApi2SDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.advice.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new AdviceSlipApi2SDK({ apikey: '...' })
+const client = new AdviceSlipApi2SDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.advice
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new AdviceSlipApi2SDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new AdviceSlipApi2SDK({
 Create a `.env.local` file at the project root:
 
 ```
-ADVICE-SLIP-API2_TEST_LIVE=TRUE
-ADVICE-SLIP-API2_APIKEY=<your-key>
+ADVICE_SLIP_API2_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new AdviceSlipApi2SDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new AdviceSlipApi2SDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -279,7 +276,7 @@ API path: `/advice/search/{query}`
 
 ### Advice
 
-Create an instance: `const advice = client.Advice()`
+Create an instance: `const advice = client.advice`
 
 #### Operations
 
@@ -296,13 +293,13 @@ Create an instance: `const advice = client.Advice()`
 #### Example: Load
 
 ```ts
-const advice = await client.Advice().load({ id: 'advice_id' })
+const advice = await client.advice.load({ id: 'advice_id' })
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -321,7 +318,7 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
@@ -382,7 +379,7 @@ advice-slip-api2/
 Import the SDK from the package root:
 
 ```ts
-import { AdviceSlipApi2SDK } from 'advice-slip-api2'
+import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2'
 ```
 
 ### Entity state
@@ -392,11 +389,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const advice = client.advice
+await advice.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// advice.data() now returns the loaded advice data
+// advice.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

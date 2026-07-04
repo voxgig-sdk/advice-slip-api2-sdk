@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.adviceslip.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -85,7 +81,8 @@ class Config {
                     "name": "id",
                     "orig": "slip_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -174,7 +171,8 @@ class Config {
                     "name": "id",
                     "orig": "query",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AdviceLoadMatch
+---@param ctrl? table
+---@return Advice
+---@return string? err
 function AdviceEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

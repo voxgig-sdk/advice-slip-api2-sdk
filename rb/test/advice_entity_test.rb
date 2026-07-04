@@ -42,8 +42,7 @@ class AdviceEntityTest < Minitest::Test
     # LOAD
     advice_ref01_ent = client.Advice(nil)
     advice_ref01_match_dt0 = {}
-    advice_ref01_data_dt0_loaded, err = advice_ref01_ent.load(advice_ref01_match_dt0, nil)
-    assert_nil err
+    advice_ref01_data_dt0_loaded = advice_ref01_ent.load(advice_ref01_match_dt0, nil)
     assert !advice_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def advice_basic_setup(extra)
     "ADVICESLIPAPI__TEST_ADVICE_ENTID" => idmap,
     "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
     "ADVICESLIPAPI__TEST_EXPLAIN" => "FALSE",
-    "ADVICESLIPAPI__APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def advice_basic_setup(extra)
   if env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ADVICESLIPAPI__APIKEY"],
       },
       extra || {},
     ])

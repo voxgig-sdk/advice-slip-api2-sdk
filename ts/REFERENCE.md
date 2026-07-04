@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -122,7 +121,7 @@ Alias for `AdviceSlipApi2SDK.test()`.
 ## AdviceEntity
 
 ```ts
-const advice = client.Advice()
+const advice = client.advice
 ```
 
 ### Fields
@@ -138,7 +137,7 @@ const advice = client.Advice()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Advice().load({ id: 'advice_id' })
+const result = await client.advice.load({ id: 'advice_id' })
 ```
 
 ### Common Methods
@@ -172,7 +171,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.Search()
+const search = client.search
 ```
 
 ### Fields
@@ -190,7 +189,7 @@ const search = client.Search()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Search().load({ id: 'search_id' })
+const result = await client.search.load({ id: 'search_id' })
 ```
 
 ### Common Methods

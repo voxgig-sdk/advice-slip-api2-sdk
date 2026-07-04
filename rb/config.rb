@@ -15,9 +15,6 @@ module AdviceSlipApi2Config
       },
       "options" => {
         "base" => "https://api.adviceslip.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -54,6 +51,7 @@ module AdviceSlipApi2Config
                         "orig" => "slip_id",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -143,6 +141,7 @@ module AdviceSlipApi2Config
                         "orig" => "query",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

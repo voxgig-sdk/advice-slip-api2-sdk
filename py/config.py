@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api.adviceslip.com",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -54,6 +51,7 @@ def make_config():
                       "orig": "slip_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -143,6 +141,7 @@ def make_config():
                       "orig": "query",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
