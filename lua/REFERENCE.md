@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## AdviceEntity
 
 ```lua
-local advice = client:advice(nil)
+local advice = client:Advice(nil)
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ local advice = client:advice(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:advice():load({ id = "advice_id" })
+local result, err = client:Advice():load({ id = "advice_id" })
 ```
 
 ### Common Methods
@@ -139,7 +139,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -157,7 +157,7 @@ local search = client:search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:search():load({ id = "search_id" })
+local result, err = client:Search():load({ id = "search_id" })
 ```
 
 ### Common Methods

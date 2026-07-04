@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AdviceEntity
 
 ```python
-advice = client.advice
+advice = client.Advice()
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ advice = client.advice
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.advice.load({"id": "advice_id"})
+result = client.Advice().load({"id": "advice_id"})
 ```
 
 ### Common Methods
@@ -135,7 +135,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -153,7 +153,7 @@ search = client.search
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.search.load({"id": "search_id"})
+result = client.Search().load({"id": "search_id"})
 ```
 
 ### Common Methods

@@ -26,9 +26,9 @@ import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2'
 
 const client = new AdviceSlipApi2SDK()
 
-// Load advice data
-const advice = await client.advice.load({})
-console.log(advice.data)
+// Load advice data (returns a Advice)
+const advice = await client.Advice().load()
+console.log(advice)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,8 +85,8 @@ from adviceslipapi2_sdk import AdviceSlipApi2SDK
 client = AdviceSlipApi2SDK()
 
 
-# Load a specific advice
-advice = client.advice.load({"id": "example_id"})
+# Load a specific advice (returns the record, raises on error)
+advice = client.Advice().load({"id": "example_id"})
 print(advice)
 ```
 
@@ -99,8 +99,8 @@ require_once 'adviceslipapi2_sdk.php';
 $client = new AdviceSlipApi2SDK();
 
 
-// Load a specific advice
-$advice = $client->advice()->load(["id" => "example_id"]);
+// Load a specific advice (returns the bare record; throws on error)
+$advice = $client->Advice()->load(["id" => "example_id"]);
 print_r($advice);
 ```
 
@@ -124,8 +124,8 @@ require_relative "AdviceSlipApi2_sdk"
 client = AdviceSlipApi2SDK.new
 
 
-# Load a specific advice
-advice = client.advice.load({ "id" => "example_id" })
+# Load a specific advice (returns the bare record; raises on error)
+advice = client.Advice.load({ "id" => "example_id" })
 puts advice
 ```
 
@@ -138,7 +138,7 @@ local client = sdk.new()
 
 
 -- Load a specific advice
-local advice, err = client:advice():load({ id = "example_id" })
+local advice, err = client:Advice():load({ id = "example_id" })
 print(advice)
 ```
 
@@ -151,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AdviceSlipApi2SDK.test()
-const result = await client.advice.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const advice = await client.Advice().load({ id: 'test01' })
+// advice is a bare Advice populated with mock data
+console.log(advice)
 ```
 
 ### Python
 
 ```python
 client = AdviceSlipApi2SDK.test()
-result = client.advice.load({"id": "test01"})
+advice = client.Advice().load({"id": "test01"})
+print(advice)
 ```
 
 ### PHP
 
 ```php
-$client = AdviceSlipApi2SDK::test();
-$result = $client->advice()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AdviceSlipApi2SDK::test([
+    "entity" => ["advice" => ["test01" => ["id" => "test01"]]],
+]);
+$advice = $client->Advice()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -181,15 +186,18 @@ result, err := client.Advice(nil).Load(
 ### Ruby
 
 ```ruby
-client = AdviceSlipApi2SDK.test
-result = client.advice.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AdviceSlipApi2SDK.test({
+  "entity" => { "advice" => { "test01" => { "id" => "test01" } } },
+})
+advice = client.Advice.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:advice():load({ id = "test01" })
+local result, err = client:Advice():load({ id = "test01" })
 ```
 
 ## How it works
@@ -237,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

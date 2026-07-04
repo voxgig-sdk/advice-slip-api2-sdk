@@ -121,7 +121,7 @@ Alias for `AdviceSlipApi2SDK.test()`.
 ## AdviceEntity
 
 ```ts
-const advice = client.advice
+const advice = client.Advice()
 ```
 
 ### Fields
@@ -137,7 +137,7 @@ const advice = client.advice
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.advice.load({ id: 'advice_id' })
+const result = await client.Advice().load({ id: 'advice_id' })
 ```
 
 ### Common Methods
@@ -171,7 +171,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -189,7 +189,7 @@ const search = client.search
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.search.load({ id: 'search_id' })
+const result = await client.Search().load({ id: 'search_id' })
 ```
 
 ### Common Methods

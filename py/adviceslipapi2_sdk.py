@@ -220,41 +220,21 @@ class AdviceSlipApi2SDK:
         }
 
 
-    @property
-    def advice(self):
-        """Idiomatic facade: client.advice.list() / client.advice.load({"id": ...})."""
-        from entity.advice_entity import AdviceEntity
-        cached = getattr(self, "_advice", None)
-        if cached is None:
-            cached = AdviceEntity(self, None)
-            self._advice = cached
-        return cached
-
-    def Advice(self, data=None):
-        # Deprecated: use client.advice instead.
+    def Advice(self, data=None) -> "AdviceEntity":
+        """Entity factory: client.Advice().list({}) / client.Advice().load({"id": ...})."""
         from entity.advice_entity import AdviceEntity
         return AdviceEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AdviceSlipApi2SDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class AdviceSlipApi2SDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.advice_entity import AdviceEntity
+    from entity.search_entity import SearchEntity

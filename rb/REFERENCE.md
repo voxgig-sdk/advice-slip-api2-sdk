@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## AdviceEntity
 
 ```ruby
-advice = client.advice
+advice = client.Advice
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ advice = client.advice
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.advice.load({ "id" => "advice_id" })
+result = client.Advice.load({ "id" => "advice_id" })
 ```
 
 ### Common Methods
@@ -142,7 +142,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -160,7 +160,7 @@ search = client.search
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.search.load({ "id" => "search_id" })
+result = client.Search.load({ "id" => "search_id" })
 ```
 
 ### Common Methods
