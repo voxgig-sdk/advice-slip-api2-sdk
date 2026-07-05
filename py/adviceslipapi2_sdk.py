@@ -221,13 +221,13 @@ class AdviceSlipApi2SDK:
 
 
     def Advice(self, data=None) -> "AdviceEntity":
-        """Entity factory: client.Advice().list({}) / client.Advice().load({"id": ...})."""
+        """Entity factory: client.Advice().list() / client.Advice().load({"id": ...})."""
         from entity.advice_entity import AdviceEntity
         return AdviceEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 

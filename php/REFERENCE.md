@@ -8,7 +8,7 @@ Complete API reference for the AdviceSlipApi2 PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/advice-slip-api2_sdk.php';
+require_once __DIR__ . '/adviceslipapi2_sdk.php';
 
 $client = new AdviceSlipApi2SDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `AdviceEntity` instance. Pass `null` for no initial data.
 
 Create a new `SearchEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): AdviceSlipApi2Utility`
 
 Return a copy of the SDK utility object.
 
@@ -96,7 +96,7 @@ $advice = $client->Advice();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | ``$OBJECT`` | No |  |
+| `slip` | `array` | No |  |
 
 ### Operations
 
@@ -110,19 +110,19 @@ $result = $client->Advice()->load(["id" => "advice_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -131,7 +131,7 @@ Set the entity match criteria.
 Create a new `AdviceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -148,9 +148,9 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | ``$STRING`` | No |  |
-| `slip` | ``$ARRAY`` | No |  |
-| `total_result` | ``$STRING`` | No |  |
+| `query` | `string` | No |  |
+| `slip` | `array` | No |  |
+| `total_result` | `string` | No |  |
 
 ### Operations
 
@@ -164,19 +164,19 @@ $result = $client->Search()->load(["id" => "search_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -185,7 +185,7 @@ Set the entity match criteria.
 Create a new `SearchEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -8,7 +8,7 @@ Complete API reference for the AdviceSlipApi2 Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'advice-slip-api2_sdk'
+require_relative 'AdviceSlipApi2_sdk'
 
 client = AdviceSlipApi2SDK.new(options)
 ```
@@ -97,7 +97,7 @@ advice = client.Advice
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | ``$OBJECT`` | No |  |
+| `slip` | `Hash` | No |  |
 
 ### Operations
 
@@ -149,9 +149,9 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | ``$STRING`` | No |  |
-| `slip` | ``$ARRAY`` | No |  |
-| `total_result` | ``$STRING`` | No |  |
+| `query` | `String` | No |  |
+| `slip` | `Array` | No |  |
+| `total_result` | `String` | No |  |
 
 ### Operations
 

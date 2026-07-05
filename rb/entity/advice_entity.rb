@@ -67,10 +67,12 @@ class AdviceEntity
   
   # Load a single Advice.
   #
-  # @param reqmatch [AdviceLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [AdviceLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Advice.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Advice, Hash] the loaded Advice; raises AdviceSlipApi2Error on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

@@ -8,7 +8,7 @@ Complete API reference for the AdviceSlipApi2 Python SDK.
 ### Constructor
 
 ```python
-from advice-slip-api2_sdk import AdviceSlipApi2SDK
+from adviceslipapi2_sdk import AdviceSlipApi2SDK
 
 client = AdviceSlipApi2SDK(options)
 ```
@@ -91,7 +91,7 @@ advice = client.Advice()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | ``$OBJECT`` | No |  |
+| `slip` | `dict` | No |  |
 
 ### Operations
 
@@ -142,9 +142,9 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | ``$STRING`` | No |  |
-| `slip` | ``$ARRAY`` | No |  |
-| `total_result` | ``$STRING`` | No |  |
+| `query` | `str` | No |  |
+| `slip` | `list` | No |  |
+| `total_result` | `str` | No |  |
 
 ### Operations
 
