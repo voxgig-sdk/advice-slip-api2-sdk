@@ -35,7 +35,7 @@ client = AdviceSlipApi2SDK.new
 ```ruby
 begin
   # load returns the bare Advice record (raises on error).
-  advice = client.Advice.load({ "id" => "example_id" })
+  advice = client.Advice.load({ "id" => 1 })
   puts advice
 rescue => err
   warn "load failed: #{err}"
@@ -281,7 +281,7 @@ Create an instance: `advice = client.Advice`
 
 ```ruby
 # load returns the bare Advice record (raises on error).
-advice = client.Advice.load({ "id" => "advice_id" })
+advice = client.Advice.load({ "id" => 1 })
 ```
 
 

@@ -103,7 +103,7 @@ local advice = client:Advice(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Advice():load({ id = "advice_id" })
+local result, err = client:Advice():load({ id = 1 })
 ```
 
 ### Common Methods

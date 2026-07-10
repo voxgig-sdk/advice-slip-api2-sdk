@@ -10,7 +10,7 @@
 ---@field slip? table
 
 ---@class AdviceLoadMatch
----@field id number
+---@field id? number
 
 ---@class Search
 ---@field query? string

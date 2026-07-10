@@ -36,7 +36,7 @@ $client = new AdviceSlipApi2SDK();
 ```php
 try {
     // load() returns the bare Advice record (throws on error).
-    $advice = $client->Advice()->load(["id" => "example_id"]);
+    $advice = $client->Advice()->load(["id" => 1]);
     print_r($advice);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -291,7 +291,7 @@ Create an instance: `$advice = $client->Advice();`
 
 ```php
 // load() returns the bare Advice record (throws on error).
-$advice = $client->Advice()->load(["id" => "advice_id"]);
+$advice = $client->Advice()->load(["id" => 1]);
 ```
 
 

@@ -95,6 +95,7 @@ same parameters as `Direct()`.
 
 ```go
 advice := client.Advice(nil)
+fmt.Println(advice.GetName()) // "advice"
 ```
 
 ### Fields
@@ -110,7 +111,11 @@ advice := client.Advice(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Advice(nil).Load(map[string]any{"id": "advice_id"}, nil)
+result, err := client.Advice(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -141,6 +146,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -159,6 +165,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

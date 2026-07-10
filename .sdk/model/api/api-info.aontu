@@ -15,9 +15,9 @@ main: {
           url: "https://api.adviceslip.com"
         }
       ]
+      summary: "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics."
       title: "Advice Slip API"
       version: "1.0.0"
+      website: "https://adviceslip.com"
     }
   }
-}
-

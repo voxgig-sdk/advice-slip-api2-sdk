@@ -301,7 +301,7 @@ Create an instance: `advice := client.Advice(nil)`
 #### Example: Load
 
 ```go
-advice, err := client.Advice(nil).Load(map[string]any{"id": "advice_id"}, nil)
+advice, err := client.Advice(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }

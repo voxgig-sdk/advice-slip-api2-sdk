@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -335,14 +332,17 @@
           "url": "https://api.adviceslip.com"
         },
         "description": "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics. Users can easily retrieve advice slips in a straightforward manner through simple API calls.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.adviceslip.com"
           }
         ],
+        "summary": "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics.",
         "title": "Advice Slip API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://adviceslip.com"
       },
       "option": {},
       "target": {
@@ -395,6 +395,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -445,6 +448,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

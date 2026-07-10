@@ -105,7 +105,7 @@ $advice = $client->Advice();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Advice()->load(["id" => "advice_id"]);
+$result = $client->Advice()->load(["id" => 1]);
 ```
 
 ### Common Methods
