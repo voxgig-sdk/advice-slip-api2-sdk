@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- AdviceSlipApi2 SDK exists test
 
 local sdk = require("advice-slip-api2_sdk")
 
