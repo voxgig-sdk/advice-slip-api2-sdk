@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AdviceSlipApi2Utility.registrar = ->(u) {
   u.prepare_params = AdviceSlipApi2Utilities::PrepareParams
   u.prepare_path = AdviceSlipApi2Utilities::PreparePath
   u.prepare_query = AdviceSlipApi2Utilities::PrepareQuery
+  u.graphql_body = AdviceSlipApi2Utilities::GraphqlBody
+  u.graphql_errors = AdviceSlipApi2Utilities::GraphqlErrors
   u.result_basic = AdviceSlipApi2Utilities::ResultBasic
   u.result_body = AdviceSlipApi2Utilities::ResultBody
   u.result_headers = AdviceSlipApi2Utilities::ResultHeaders

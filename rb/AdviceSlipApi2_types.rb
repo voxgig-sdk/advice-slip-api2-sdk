@@ -10,10 +10,14 @@
 
 # Advice entity data model.
 #
-# @!attribute [rw] slip
-#   @return [Hash, nil]
+# @!attribute [rw] advice
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [Integer, nil]
 Advice = Struct.new(
-  :slip,
+  :advice,
+  :id,
   keyword_init: true
 )
 
@@ -31,15 +35,15 @@ AdviceLoadMatch = Struct.new(
 # @!attribute [rw] query
 #   @return [String, nil]
 #
-# @!attribute [rw] slip
+# @!attribute [rw] slips
 #   @return [Array, nil]
 #
-# @!attribute [rw] total_result
+# @!attribute [rw] total_results
 #   @return [String, nil]
 Search = Struct.new(
   :query,
-  :slip,
-  :total_result,
+  :slips,
+  :total_results,
   keyword_init: true
 )
 

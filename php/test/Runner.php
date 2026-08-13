@@ -43,8 +43,8 @@ class AdviceSlipApi2TestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('ADVICESLIPAPI2_TEST_LIVE');
-        $override = self::getenv('ADVICESLIPAPI2_TEST_OVERRIDE');
+        $live = self::getenv('ADVICE_SLIP_API2_TEST_LIVE');
+        $override = self::getenv('ADVICE_SLIP_API2_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class AdviceSlipApi2TestRunner
             }
         }
 
-        $explain = self::getenv('ADVICESLIPAPI2_TEST_EXPLAIN');
+        $explain = self::getenv('ADVICE_SLIP_API2_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['ADVICESLIPAPI2_TEST_EXPLAIN'] = $explain;
+            $m['ADVICE_SLIP_API2_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

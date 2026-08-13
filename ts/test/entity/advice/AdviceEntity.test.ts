@@ -26,8 +26,8 @@ import {
 describe('AdviceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ADVICESLIPAPI2_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ADVICESLIPAPI2_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ADVICE_SLIP_API2_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ADVICE_SLIP_API2_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AdviceSlipApi2SDK.test()
@@ -38,7 +38,7 @@ describe('AdviceEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.ADVICE_SLIP_API__TEST_LIVE
+    const live = 'TRUE' === process.env.ADVICE_SLIP_API2_TEST_LIVE
     for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'advice.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('AdviceEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set ADVICE_SLIP_API__TEST_ADVICE_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set ADVICE_SLIP_API2_TEST_ADVICE_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -59,9 +59,12 @@ describe('AdviceEntity', async () => {
 
     let advice_ref01_data = Object.values(setup.data.existing.advice)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const advice_ref01_ent = client.Advice()
+    const advice_ref01_match_dt0: any = {}
+    advice_ref01_match_dt0.id = advice_ref01_data.id
+    const advice_ref01_data_dt0 = (await advice_ref01_ent.load(advice_ref01_match_dt0)).data()
+    assert(advice_ref01_data_dt0.id === advice_ref01_data.id)
 
 
   })
@@ -104,18 +107,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['ADVICE_SLIP_API__TEST_ADVICE_ENTID']
+  const idmapEnvVal = process.env['ADVICE_SLIP_API2_TEST_ADVICE_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'ADVICE_SLIP_API__TEST_ADVICE_ENTID': idmap,
-    'ADVICE_SLIP_API__TEST_LIVE': 'FALSE',
-    'ADVICE_SLIP_API__TEST_EXPLAIN': 'FALSE',
+    'ADVICE_SLIP_API2_TEST_ADVICE_ENTID': idmap,
+    'ADVICE_SLIP_API2_TEST_LIVE': 'FALSE',
+    'ADVICE_SLIP_API2_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['ADVICE_SLIP_API__TEST_ADVICE_ENTID']
+  idmap = env['ADVICE_SLIP_API2_TEST_ADVICE_ENTID']
 
-  const live = 'TRUE' === env.ADVICE_SLIP_API__TEST_LIVE
+  const live = 'TRUE' === env.ADVICE_SLIP_API2_TEST_LIVE
 
   if (live) {
     client = new AdviceSlipApi2SDK(merge([
@@ -132,7 +135,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.ADVICE_SLIP_API__TEST_EXPLAIN,
+    explain: 'TRUE' === env.ADVICE_SLIP_API2_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

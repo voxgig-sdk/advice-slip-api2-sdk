@@ -128,7 +128,8 @@ const advice = client.Advice()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | `Record<string, any>` | No |  |
+| `advice` | `string` | No |  |
+| `id` | `number` | No |  |
 
 ### Operations
 
@@ -179,8 +180,8 @@ const search = client.Search()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `query` | `string` | No |  |
-| `slip` | `any[]` | No |  |
-| `total_result` | `string` | No |  |
+| `slips` | `any[]` | No |  |
+| `total_results` | `string` | No |  |
 
 ### Operations
 

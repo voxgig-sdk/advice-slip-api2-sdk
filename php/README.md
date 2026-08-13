@@ -35,7 +35,7 @@ $client = new AdviceSlipApi2SDK();
 
 ```php
 try {
-    // load() returns the bare Advice record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Advice record (throws on error).
     $advice = $client->Advice()->load(["id" => 1]);
     print_r($advice);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $advice = $client->Advice()->load(["id" => 1]);
+    $advice = $client->Advice()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -126,7 +126,8 @@ $client = AdviceSlipApi2SDK::test([
     "entity" => ["advice" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $advice = $client->Advice()->load(["id" => "test01"]);
 print_r($advice);
 ```
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -248,7 +249,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `slip` |  |
+| `advice` |  |
+| `id` |  |
 
 Operations: Load.
 
@@ -259,8 +261,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `query` |  |
-| `slip` |  |
-| `total_result` |  |
+| `slips` |  |
+| `total_results` |  |
 
 Operations: Load.
 
@@ -285,12 +287,13 @@ Create an instance: `$advice = $client->Advice();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `array` |  |
+| `advice` | `string` |  |
+| `id` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Advice record (throws on error).
+// load() returns the ENTITY — call data_get() for the Advice record (throws on error).
 $advice = $client->Advice()->load(["id" => 1]);
 ```
 
@@ -310,13 +313,13 @@ Create an instance: `$search = $client->Search();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `string` |  |
-| `slip` | `array` |  |
-| `total_result` | `string` |  |
+| `slips` | `array` |  |
+| `total_results` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Search record (throws on error).
+// load() returns the ENTITY — call data_get() for the Search record (throws on error).
 $search = $client->Search()->load(["id" => "search_id"]);
 ```
 
@@ -398,7 +401,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $advice = $client->Advice();
-$advice->load(["id" => 1]);
+$advice->load();
 
 // $advice->data_get() now returns the advice data from the last load
 // $advice->match_get() returns the last match criteria

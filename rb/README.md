@@ -34,7 +34,7 @@ client = AdviceSlipApi2SDK.new
 
 ```ruby
 begin
-  # load returns the bare Advice record (raises on error).
+  # load returns the ENTITY — call data_get for the Advice record (raises on error).
   advice = client.Advice.load({ "id" => 1 })
   puts advice
 rescue => err
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  advice = client.Advice.load({ "id" => 1 })
+  advice = client.Advice.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -120,7 +120,8 @@ client = AdviceSlipApi2SDK.test({
   "entity" => { "advice" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 advice = client.Advice.load({ "id" => "test01" })
 puts advice
 ```
@@ -238,7 +239,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `slip` |  |
+| `advice` |  |
+| `id` |  |
 
 Operations: Load.
 
@@ -249,8 +251,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `query` |  |
-| `slip` |  |
-| `total_result` |  |
+| `slips` |  |
+| `total_results` |  |
 
 Operations: Load.
 
@@ -275,12 +277,13 @@ Create an instance: `advice = client.Advice`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `Hash` |  |
+| `advice` | `String` |  |
+| `id` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Advice record (raises on error).
+# load returns the ENTITY — call data_get for the Advice record (raises on error).
 advice = client.Advice.load({ "id" => 1 })
 ```
 
@@ -300,13 +303,13 @@ Create an instance: `search = client.Search`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `String` |  |
-| `slip` | `Array` |  |
-| `total_result` | `String` |  |
+| `slips` | `Array` |  |
+| `total_results` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Search record (raises on error).
+# load returns the ENTITY — call data_get for the Search record (raises on error).
 search = client.Search.load({ "id" => "search_id" })
 ```
 
@@ -388,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 advice = client.Advice
-advice.load({ "id" => 1 })
+advice.load()
 
 # advice.data_get now returns the advice data from the last load
 # advice.match_get returns the last match criteria

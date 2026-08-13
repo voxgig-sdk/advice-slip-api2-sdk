@@ -7,15 +7,16 @@
 -- edit by hand.
 
 ---@class Advice
----@field slip? table
+---@field advice? string
+---@field id? number
 
 ---@class AdviceLoadMatch
 ---@field id? number
 
 ---@class Search
 ---@field query? string
----@field slip? table
----@field total_result? string
+---@field slips? table
+---@field total_results? string
 
 ---@class SearchLoadMatch
 ---@field id string

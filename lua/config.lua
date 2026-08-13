@@ -27,10 +27,17 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "slip",
+            ["name"] = "advice",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "id",
+            ["req"] = false,
+            ["type"] = "`$INTEGER`",
+            ["index$"] = 1,
           },
         },
         ["name"] = "advice",
@@ -54,6 +61,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/advice/{slip_id}",
                 ["parts"] = {
@@ -72,13 +80,14 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.slip`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/advice",
                 ["parts"] = {
@@ -87,7 +96,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.slip`",
                 },
                 ["index$"] = 1,
               },
@@ -110,14 +119,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "slip",
+            ["name"] = "slips",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "total_result",
+            ["name"] = "total_results",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -144,6 +153,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/advice/search/{query}",
                 ["parts"] = {

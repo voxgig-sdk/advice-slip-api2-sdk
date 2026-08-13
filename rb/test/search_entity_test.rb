@@ -26,7 +26,7 @@ class SearchEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set ADVICESLIPAPI__TEST_SEARCH_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set ADVICE_SLIP_API2_TEST_SEARCH_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -74,22 +74,22 @@ def search_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["ADVICESLIPAPI__TEST_SEARCH_ENTID"]
+  entid_env_raw = ENV["ADVICE_SLIP_API2_TEST_SEARCH_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "ADVICESLIPAPI__TEST_SEARCH_ENTID" => idmap,
-    "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
-    "ADVICESLIPAPI__TEST_EXPLAIN" => "FALSE",
+    "ADVICE_SLIP_API2_TEST_SEARCH_ENTID" => idmap,
+    "ADVICE_SLIP_API2_TEST_LIVE" => "FALSE",
+    "ADVICE_SLIP_API2_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["ADVICESLIPAPI__TEST_SEARCH_ENTID"])
+    env["ADVICE_SLIP_API2_TEST_SEARCH_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
+  if env["ADVICE_SLIP_API2_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -98,13 +98,13 @@ def search_basic_setup(extra)
     client = AdviceSlipApi2SDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
+  live = env["ADVICE_SLIP_API2_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["ADVICESLIPAPI__TEST_EXPLAIN"] == "TRUE",
+    explain: env["ADVICE_SLIP_API2_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

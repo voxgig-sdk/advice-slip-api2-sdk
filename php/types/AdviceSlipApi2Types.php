@@ -15,7 +15,8 @@ declare(strict_types=1);
 /** Advice entity data model. */
 class Advice
 {
-    public ?array $slip = null;
+    public ?string $advice = null;
+    public ?int $id = null;
 }
 
 /** Request payload for Advice#load. */
@@ -28,8 +29,8 @@ class AdviceLoadMatch
 class Search
 {
     public ?string $query = null;
-    public ?array $slip = null;
-    public ?string $total_result = null;
+    public ?array $slips = null;
+    public ?string $total_results = null;
 }
 
 /** Request payload for Search#load. */

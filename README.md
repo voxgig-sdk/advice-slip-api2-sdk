@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AdviceSlipApi2SDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AdviceSlipApi2SDK.test({
+  entity: {
+    advice: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const advice = await client.Advice().load({ id: 1 })
-// advice is a bare Advice populated with mock data
+// advice is the Advice entity, populated with mock data
+// — call advice.data() for the record itself
 console.log(advice)
 ```
 
@@ -183,7 +192,7 @@ require_once 'adviceslipapi2_sdk.php';
 $client = new AdviceSlipApi2SDK();
 
 
-// Load a specific advice (returns the bare record; throws on error)
+// Load a specific advice (returns the ENTITY; call data_get() for the record; throws on error)
 $advice = $client->Advice()->load(["id" => 1]);
 print_r($advice);
 ```
@@ -211,7 +220,7 @@ require_relative "AdviceSlipApi2_sdk"
 client = AdviceSlipApi2SDK.new
 
 
-# Load a specific advice (returns the bare record; raises on error)
+# Load a specific advice (returns the ENTITY; call data_get for the record)
 advice = client.Advice.load({ "id" => 1 })
 puts advice
 ```
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.adviceslip.com](https://api.adviceslip.com)
 

@@ -6,7 +6,8 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Advice {
-  slip?: Record<string, any>
+  advice?: string
+  id?: number
 }
 
 export interface AdviceLoadMatch {
@@ -15,8 +16,8 @@ export interface AdviceLoadMatch {
 
 export interface Search {
   query?: string
-  slip?: any[]
-  total_result?: string
+  slips?: any[]
+  total_results?: string
 }
 
 export interface SearchLoadMatch {

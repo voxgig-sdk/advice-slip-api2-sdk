@@ -70,11 +70,11 @@ function advice_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["ADVICESLIPAPI__TEST_ADVICE_ENTID"] = {},
-    ["ADVICESLIPAPI__TEST_LIVE"] = "FALSE",
+    ["ADVICE_SLIP_API2_TEST_ADVICE_ENTID"] = {},
+    ["ADVICE_SLIP_API2_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
+  local live = env["ADVICE_SLIP_API2_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

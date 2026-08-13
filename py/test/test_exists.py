@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# AdviceSlipApi2 SDK exists test
 
 import pytest
 from adviceslipapi2_sdk import AdviceSlipApi2SDK

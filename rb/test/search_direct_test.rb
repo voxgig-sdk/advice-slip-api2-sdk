@@ -69,11 +69,11 @@ def search_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "ADVICESLIPAPI__TEST_SEARCH_ENTID" => {},
-    "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
+    "ADVICE_SLIP_API2_TEST_SEARCH_ENTID" => {},
+    "ADVICE_SLIP_API2_TEST_LIVE" => "FALSE",
   })
 
-  live = env["ADVICESLIPAPI__TEST_LIVE"] == "TRUE"
+  live = env["ADVICE_SLIP_API2_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

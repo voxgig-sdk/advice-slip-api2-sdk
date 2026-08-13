@@ -2,15 +2,15 @@
   "existing": {
     "advice": {
       "ADVICE00": {
-        "slip": {},
+        "advice": "s14",
         "id": "ADVICE00"
       },
       "ADVICE01": {
-        "slip": {},
+        "advice": "s28",
         "id": "ADVICE01"
       },
       "ADVICE02": {
-        "slip": {},
+        "advice": "s3c",
         "id": "ADVICE02"
       }
     }
@@ -18,7 +18,7 @@
   "new": {
     "advice": {
       "advice_ref01": {
-        "slip": {}
+        "advice": "s50"
       }
     }
   }

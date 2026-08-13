@@ -11,12 +11,12 @@ main: kit: entity: search: {
       type: "`$STRING`"
     }
     {
-      name: "slip"
+      name: "slips"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "total_result"
+      name: "total_results"
       req: false
       type: "`$STRING`"
     }

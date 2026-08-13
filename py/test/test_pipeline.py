@@ -16,11 +16,11 @@
 import pytest
 
 from adviceslipapi2_sdk import AdviceSlipApi2SDK
-from core.error import AdviceSlipApi2Error
-from core.result import AdviceSlipApi2Result
-from core.response import AdviceSlipApi2Response
-from core.spec import AdviceSlipApi2Spec
-from feature.base_feature import AdviceSlipApi2BaseFeature
+from adviceslipapi2_sdk.core.error import AdviceSlipApi2Error
+from adviceslipapi2_sdk.core.result import AdviceSlipApi2Result
+from adviceslipapi2_sdk.core.response import AdviceSlipApi2Response
+from adviceslipapi2_sdk.core.spec import AdviceSlipApi2Spec
+from adviceslipapi2_sdk.feature.base_feature import AdviceSlipApi2BaseFeature
 
 
 def _client():

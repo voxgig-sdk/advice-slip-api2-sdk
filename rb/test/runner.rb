@@ -23,8 +23,8 @@ module AdviceSlipApi2TestRunner
   end
 
   def self.env_override(m)
-    live = getenv("ADVICESLIPAPI2_TEST_LIVE")
-    override = getenv("ADVICESLIPAPI2_TEST_OVERRIDE")
+    live = getenv("ADVICE_SLIP_API2_TEST_LIVE")
+    override = getenv("ADVICE_SLIP_API2_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module AdviceSlipApi2TestRunner
       end
     end
 
-    explain = getenv("ADVICESLIPAPI2_TEST_EXPLAIN")
-    m["ADVICESLIPAPI2_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("ADVICE_SLIP_API2_TEST_EXPLAIN")
+    m["ADVICE_SLIP_API2_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

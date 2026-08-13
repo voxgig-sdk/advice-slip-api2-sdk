@@ -97,7 +97,8 @@ advice = client.Advice
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | `Hash` | No |  |
+| `advice` | `String` | No |  |
+| `id` | `Integer` | No |  |
 
 ### Operations
 
@@ -150,8 +151,8 @@ search = client.Search
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `query` | `String` | No |  |
-| `slip` | `Array` | No |  |
-| `total_result` | `String` | No |  |
+| `slips` | `Array` | No |  |
+| `total_results` | `String` | No |  |
 
 ### Operations
 

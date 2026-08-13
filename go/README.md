@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-advice, err := client.Advice(nil).Load(map[string]any{"id": 1}, nil)
+advice, err := client.Advice(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
@@ -259,7 +259,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"slip"` |  |
+| `"advice"` |  |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -270,8 +271,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `"query"` |  |
-| `"slip"` |  |
-| `"total_result"` |  |
+| `"slips"` |  |
+| `"total_results"` |  |
 
 Operations: Load.
 
@@ -296,7 +297,8 @@ Create an instance: `advice := client.Advice(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `map[string]any` |  |
+| `advice` | `string` |  |
+| `id` | `int` |  |
 
 #### Example: Load
 
@@ -324,8 +326,8 @@ Create an instance: `search := client.Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `string` |  |
-| `slip` | `[]any` |  |
-| `total_result` | `string` |  |
+| `slips` | `[]any` |  |
+| `total_results` | `string` |  |
 
 #### Example: Load
 
@@ -412,7 +414,7 @@ stores the returned data and match criteria internally.
 
 ```go
 advice := client.Advice(nil)
-advice.Load(map[string]any{"id": 1}, nil)
+advice.Load(nil, nil)
 
 // advice.Data() now returns the advice data from the last load
 // advice.Match() returns the last match criteria

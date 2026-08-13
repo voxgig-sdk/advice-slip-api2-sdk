@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AdviceSlipApi2Control
-from core.error import AdviceSlipApi2Error
-from core.result import AdviceSlipApi2Result
-from core.spec import AdviceSlipApi2Spec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import AdviceSlipApi2Control
+from projectname_sdk.core.error import AdviceSlipApi2Error
+from projectname_sdk.core.result import AdviceSlipApi2Result
+from projectname_sdk.core.spec import AdviceSlipApi2Spec
 
 
 # True when this SDK was generated with the named feature.

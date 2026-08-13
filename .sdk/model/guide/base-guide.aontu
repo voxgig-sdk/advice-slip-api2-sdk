@@ -8,10 +8,12 @@ guide: {
   entity: advice: {
     path: "/advice": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.slip`")|top
     }
     path: "/advice/{slip_id}": {
       rename: param: "slip_id": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.slip`")|top
     }
   }
 

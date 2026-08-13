@@ -6,11 +6,21 @@ main: kit: entity: advice: {
 
   fields: [
     {
-      name: "slip"
+      name: "advice"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "advice"
   op: {
@@ -47,7 +57,7 @@ main: kit: entity: advice: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.slip`"
           }
         }
         {
@@ -58,7 +68,7 @@ main: kit: entity: advice: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.slip`"
           }
         }
       ]

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'AdviceSlipApi2',
   }
 
 
@@ -59,10 +59,17 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "slip",
+          "name": "advice",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
+        },
+        {
+          "active": true,
+          "name": "id",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 1
         }
       ],
       "name": "advice",
@@ -86,6 +93,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/advice/{slip_id}",
               "parts": [
@@ -104,13 +112,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.slip`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/advice",
               "parts": [
@@ -119,7 +128,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.slip`"
               },
               "index$": 1
             }
@@ -142,14 +151,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "slip",
+          "name": "slips",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "total_result",
+          "name": "total_results",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -176,6 +185,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/advice/search/{query}",
               "parts": [

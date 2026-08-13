@@ -33,7 +33,7 @@ class AdviceEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set ADVICESLIPAPI__TEST_ADVICE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set ADVICE_SLIP_API2_TEST_ADVICE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -48,9 +48,13 @@ class AdviceEntityTest extends TestCase
 
         // LOAD
         $advice_ref01_ent = $client->Advice(null);
-        $advice_ref01_match_dt0 = [];
+        $advice_ref01_match_dt0 = [
+            "id" => $advice_ref01_data["id"],
+        ];
         $advice_ref01_data_dt0_loaded = $advice_ref01_ent->load($advice_ref01_match_dt0, null);
-        $this->assertNotNull($advice_ref01_data_dt0_loaded);
+        $advice_ref01_data_dt0_load_result = Helpers::to_map(is_object($advice_ref01_data_dt0_loaded) && method_exists($advice_ref01_data_dt0_loaded, 'data_get') ? $advice_ref01_data_dt0_loaded->data_get() : $advice_ref01_data_dt0_loaded);
+        $this->assertNotNull($advice_ref01_data_dt0_load_result);
+        $this->assertEquals($advice_ref01_data_dt0_load_result["id"], $advice_ref01_data["id"]);
 
     }
 }
@@ -77,22 +81,22 @@ function advice_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("ADVICESLIPAPI__TEST_ADVICE_ENTID");
+    $entid_env_raw = getenv("ADVICE_SLIP_API2_TEST_ADVICE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "ADVICESLIPAPI__TEST_ADVICE_ENTID" => $idmap,
-        "ADVICESLIPAPI__TEST_LIVE" => "FALSE",
-        "ADVICESLIPAPI__TEST_EXPLAIN" => "FALSE",
+        "ADVICE_SLIP_API2_TEST_ADVICE_ENTID" => $idmap,
+        "ADVICE_SLIP_API2_TEST_LIVE" => "FALSE",
+        "ADVICE_SLIP_API2_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["ADVICESLIPAPI__TEST_ADVICE_ENTID"]);
+        $env["ADVICE_SLIP_API2_TEST_ADVICE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["ADVICESLIPAPI__TEST_LIVE"] === "TRUE") {
+    if ($env["ADVICE_SLIP_API2_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -101,13 +105,13 @@ function advice_basic_setup($extra)
         $client = new AdviceSlipApi2SDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["ADVICESLIPAPI__TEST_LIVE"] === "TRUE";
+    $live = $env["ADVICE_SLIP_API2_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["ADVICESLIPAPI__TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["ADVICE_SLIP_API2_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

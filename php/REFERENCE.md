@@ -96,7 +96,8 @@ $advice = $client->Advice();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | `array` | No |  |
+| `advice` | `string` | No |  |
+| `id` | `int` | No |  |
 
 ### Operations
 
@@ -149,8 +150,8 @@ $search = $client->Search();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `query` | `string` | No |  |
-| `slip` | `array` | No |  |
-| `total_result` | `string` | No |  |
+| `slips` | `array` | No |  |
+| `total_results` | `string` | No |  |
 
 ### Operations
 

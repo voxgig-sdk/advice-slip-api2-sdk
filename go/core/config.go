@@ -27,10 +27,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "slip",
+						"name": "advice",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$STRING`",
 						"index$": 0,
+					},
+					map[string]any{
+						"active": true,
+						"name": "id",
+						"req": false,
+						"type": "`$INTEGER`",
+						"index$": 1,
 					},
 				},
 				"name": "advice",
@@ -54,6 +61,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/advice/{slip_id}",
 								"parts": []any{
@@ -72,13 +80,14 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.slip`",
 								},
 								"index$": 0,
 							},
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/advice",
 								"parts": []any{
@@ -87,12 +96,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.slip`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -110,14 +118,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "slip",
+						"name": "slips",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "total_result",
+						"name": "total_results",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
@@ -144,6 +152,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/advice/search/{query}",
 								"parts": []any{
@@ -168,7 +177,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

@@ -102,7 +102,8 @@ fmt.Println(advice.GetName()) // "advice"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | `map[string]any` | No |  |
+| `advice` | `string` | No |  |
+| `id` | `int` | No |  |
 
 ### Operations
 
@@ -154,8 +155,8 @@ fmt.Println(search.GetName()) // "search"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `query` | `string` | No |  |
-| `slip` | `[]any` | No |  |
-| `total_result` | `string` | No |  |
+| `slips` | `[]any` | No |  |
+| `total_results` | `string` | No |  |
 
 ### Operations
 

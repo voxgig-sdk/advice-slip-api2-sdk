@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from adviceslipapi2_sdk.utility.voxgig_struct import voxgig_struct as vs
 from adviceslipapi2_sdk import AdviceSlipApi2SDK
-from core import helpers
+from adviceslipapi2_sdk.core import helpers
 from test import runner
 
 
@@ -66,11 +66,11 @@ def _search_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "ADVICESLIPAPI__TEST_SEARCH_ENTID": {},
-        "ADVICESLIPAPI__TEST_LIVE": "FALSE",
+        "ADVICE_SLIP_API2_TEST_SEARCH_ENTID": {},
+        "ADVICE_SLIP_API2_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("ADVICESLIPAPI__TEST_LIVE") == "TRUE"
+    live = env.get("ADVICE_SLIP_API2_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

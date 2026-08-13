@@ -38,7 +38,7 @@ client = AdviceSlipApi2SDK()
 
 ### 3. Load an advice
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    advice = client.Advice().load({"id": 1})
+    advice = client.Advice().load()
     print(advice)
 except Exception as err:
     print(f"load failed: {err}")
@@ -122,7 +122,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AdviceSlipApi2SDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 advice = client.Advice().load({"id": "test01"})
 # advice contains the mock response record
 ```
@@ -219,7 +220,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -241,7 +242,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `slip` |  |
+| `advice` |  |
+| `id` |  |
 
 Operations: Load.
 
@@ -252,8 +254,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `query` |  |
-| `slip` |  |
-| `total_result` |  |
+| `slips` |  |
+| `total_results` |  |
 
 Operations: Load.
 
@@ -278,7 +280,8 @@ Create an instance: `advice = client.Advice()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `dict` |  |
+| `advice` | `str` |  |
+| `id` | `int` |  |
 
 #### Example: Load
 
@@ -302,8 +305,8 @@ Create an instance: `search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `str` |  |
-| `slip` | `list` |  |
-| `total_result` | `str` |  |
+| `slips` | `list` |  |
+| `total_results` | `str` |  |
 
 #### Example: Load
 
@@ -388,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```python
 advice = client.Advice()
-advice.load({"id": 1})
+advice.load()
 
 # advice.data_get() now returns the advice data from the last load
 # advice.match_get() returns the last match criteria

@@ -94,7 +94,8 @@ local advice = client:Advice(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `slip` | `table` | No |  |
+| `advice` | `string` | No |  |
+| `id` | `number` | No |  |
 
 ### Operations
 
@@ -147,8 +148,8 @@ local search = client:Search(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `query` | `string` | No |  |
-| `slip` | `table` | No |  |
-| `total_result` | `string` | No |  |
+| `slips` | `table` | No |  |
+| `total_results` | `string` | No |  |
 
 ### Operations
 

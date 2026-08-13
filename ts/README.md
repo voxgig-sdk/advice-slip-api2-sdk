@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const advice = await client.Advice().load({ id: 1 })
+  const advice = await client.Advice().load()
   console.log(advice)
 } catch (err) {
   console.error('load failed:', err)
@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = AdviceSlipApi2SDK.test()
 
 const advice = await client.Advice().load({ id: 1 })
-// advice is a bare entity populated with mock response data
+// advice is the entity, populated with mock response data
+// — call advice.data() for the record itself
 console.log(advice)
 ```
 
@@ -144,7 +145,7 @@ await entity.load({ id: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -285,7 +286,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `slip` |  |
+| `advice` |  |
+| `id` |  |
 
 Operations: load.
 
@@ -296,8 +298,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `query` |  |
-| `slip` |  |
-| `total_result` |  |
+| `slips` |  |
+| `total_results` |  |
 
 Operations: load.
 
@@ -322,7 +324,8 @@ Create an instance: `const advice = client.Advice()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `Record<string, any>` |  |
+| `advice` | `string` |  |
+| `id` | `number` |  |
 
 #### Example: Load
 
@@ -346,8 +349,8 @@ Create an instance: `const search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `string` |  |
-| `slip` | `any[]` |  |
-| `total_result` | `string` |  |
+| `slips` | `any[]` |  |
+| `total_results` | `string` |  |
 
 #### Example: Load
 
@@ -426,7 +429,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const advice = client.Advice()
-await advice.load({ id: 1 })
+await advice.load()
 
 // advice.data() now returns the advice data from the last `load`
 // advice.match() returns { id: 1 }

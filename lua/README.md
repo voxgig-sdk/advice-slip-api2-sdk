@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local advice, err = client:Advice():load({ id = 1 })
+local advice, err = client:Advice():load()
 if err then error(err) end
 ```
 
@@ -226,7 +226,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `slip` |  |
+| `advice` |  |
+| `id` |  |
 
 Operations: Load.
 
@@ -237,8 +238,8 @@ API path: `/advice/{slip_id}`
 | Field | Description |
 | --- | --- |
 | `query` |  |
-| `slip` |  |
-| `total_result` |  |
+| `slips` |  |
+| `total_results` |  |
 
 Operations: Load.
 
@@ -263,7 +264,8 @@ Create an instance: `local advice = client:Advice(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `slip` | `table` |  |
+| `advice` | `string` |  |
+| `id` | `number` |  |
 
 #### Example: Load
 
@@ -287,8 +289,8 @@ Create an instance: `local search = client:Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `query` | `string` |  |
-| `slip` | `table` |  |
-| `total_result` | `string` |  |
+| `slips` | `table` |  |
+| `total_results` | `string` |  |
 
 #### Example: Load
 
@@ -374,7 +376,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local advice = client:Advice()
-advice:load({ id = 1 })
+advice:load()
 
 -- advice:data_get() now returns the advice data from the last load
 -- advice:match_get() returns the last match criteria

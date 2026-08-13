@@ -3,20 +3,20 @@
     "search": {
       "SEARCH00": {
         "query": "s1e",
-        "slip": [],
-        "total_result": "s20",
+        "slips": [],
+        "total_results": "s20",
         "id": "SEARCH00"
       },
       "SEARCH01": {
         "query": "s3c",
-        "slip": [],
-        "total_result": "s3e",
+        "slips": [],
+        "total_results": "s3e",
         "id": "SEARCH01"
       },
       "SEARCH02": {
         "query": "s5a",
-        "slip": [],
-        "total_result": "s5c",
+        "slips": [],
+        "total_results": "s5c",
         "id": "SEARCH02"
       }
     }
@@ -25,8 +25,8 @@
     "search": {
       "search_ref01": {
         "query": "s78",
-        "slip": [],
-        "total_result": "s7a"
+        "slips": [],
+        "total_results": "s7a"
       }
     }
   }

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ AdviceSlipApi2Utility::setRegistrar(function (AdviceSlipApi2Utility $u): void {
     $u->prepare_params = [AdviceSlipApi2PrepareParams::class, 'call'];
     $u->prepare_path = [AdviceSlipApi2PreparePath::class, 'call'];
     $u->prepare_query = [AdviceSlipApi2PrepareQuery::class, 'call'];
+    $u->graphql_body = [AdviceSlipApi2Graphql::class, 'body'];
+    $u->graphql_errors = [AdviceSlipApi2Graphql::class, 'errors'];
     $u->result_basic = [AdviceSlipApi2ResultBasic::class, 'call'];
     $u->result_body = [AdviceSlipApi2ResultBody::class, 'call'];
     $u->result_headers = [AdviceSlipApi2ResultHeaders::class, 'call'];
