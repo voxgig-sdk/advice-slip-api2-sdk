@@ -15,7 +15,7 @@ require_relative "../AdviceSlipApi2_sdk"
 module AdviceSlipApi2FeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = AdviceSlipApi2Config.make_config["feature"]
+    f = AdviceSlipApi2Config.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -28,7 +28,7 @@ class AdviceSlipApi2SDK
     utility = AdviceSlipApi2Utility.new
     @_utility = utility
 
-    config = AdviceSlipApi2Config.make_config
+    config = AdviceSlipApi2Config.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class AdviceSlipApi2SDK
         $utility = new AdviceSlipApi2Utility();
         $this->_utility = $utility;
 
-        $config = AdviceSlipApi2Config::make_config();
+        $config = AdviceSlipApi2Config::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

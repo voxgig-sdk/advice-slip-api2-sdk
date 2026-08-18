@@ -11,7 +11,7 @@ export interface Advice {
 }
 
 export interface AdviceLoadMatch {
-  id?: number
+  id: number
 }
 
 export interface Search {

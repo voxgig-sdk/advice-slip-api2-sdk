@@ -21,7 +21,7 @@ class Advice(TypedDict, total=False):
     id: int
 
 
-class AdviceLoadMatch(TypedDict, total=False):
+class AdviceLoadMatch(TypedDict):
     id: int
 
 

@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  advice = client.Advice.load()
+  advice = client.Advice.load({ "id" => 1 })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -391,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 advice = client.Advice
-advice.load()
+advice.load({ "id" => 1 })
 
 # advice.data_get now returns the advice data from the last load
 # advice.match_get returns the last match criteria

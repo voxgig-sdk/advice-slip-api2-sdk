@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $advice = $client->Advice()->load();
+    $advice = $client->Advice()->load(["id" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -401,7 +401,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $advice = $client->Advice();
-$advice->load();
+$advice->load(["id" => 1]);
 
 // $advice->data_get() now returns the advice data from the last load
 // $advice->match_get() returns the last match criteria

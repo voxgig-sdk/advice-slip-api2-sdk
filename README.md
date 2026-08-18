@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new AdviceSlipApi2SDK()
-const advice = await client.Advice().load()
+const advice = await client.Advice().load({ id: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —

@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    advice = client.Advice().load()
+    advice = client.Advice().load({"id": 1})
     print(advice)
 except Exception as err:
     print(f"load failed: {err}")
@@ -391,7 +391,7 @@ stores the returned data and match criteria internally.
 
 ```python
 advice = client.Advice()
-advice.load()
+advice.load({"id": 1})
 
 # advice.data_get() now returns the advice data from the last load
 # advice.match_get() returns the last match criteria

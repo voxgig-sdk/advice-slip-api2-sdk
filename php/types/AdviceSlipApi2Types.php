@@ -22,7 +22,7 @@ class Advice
 /** Request payload for Advice#load. */
 class AdviceLoadMatch
 {
-    public ?int $id = null;
+    public int $id;
 }
 
 /** Search entity data model. */

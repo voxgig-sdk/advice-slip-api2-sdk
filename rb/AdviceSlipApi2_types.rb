@@ -24,7 +24,7 @@ Advice = Struct.new(
 # Request payload for Advice#load.
 #
 # @!attribute [rw] id
-#   @return [Integer, nil]
+#   @return [Integer]
 AdviceLoadMatch = Struct.new(
   :id,
   keyword_init: true

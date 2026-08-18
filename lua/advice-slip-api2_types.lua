@@ -11,7 +11,7 @@
 ---@field id? number
 
 ---@class AdviceLoadMatch
----@field id? number
+---@field id number
 
 ---@class Search
 ---@field query? string
