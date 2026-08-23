@@ -1,28 +1,30 @@
-# Entity: search
+# Entity: advice
 
-main: kit: entity: search: {
+main: kit: entity: advice: {
 
   alias: field: {}
 
   fields: [
     {
-      name: "query"
+      name: "advice"
       req: false
+      short: "The advice text"
       type: "`$STRING`"
     }
     {
-      name: "slips"
+      name: "id"
       req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "total_results"
-      req: false
-      type: "`$STRING`"
+      short: "Unique identifier for the advice slip"
+      type: "`$INTEGER`"
     }
   ]
 
-  name: "search"
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "advice"
   op: {
     load: {
       name: "load"
@@ -33,22 +35,21 @@ main: kit: entity: search: {
               {
                 kind: "param"
                 name: "id"
-                orig: "query"
+                orig: "slip_id"
                 reqd: true
-                type: "`$STRING`"
+                type: "`$INTEGER`"
               }
             ]
           }
           method: "GET"
-          orig: "/advice/search/{query}"
+          orig: "/advice/{slip_id}"
           parts: [
             "advice"
-            "search"
             "{id}"
           ]
           rename: {
             param: {
-              query: "id"
+              slip_id: "id"
             }
           }
           select: {
@@ -58,7 +59,18 @@ main: kit: entity: search: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.slip`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/advice"
+          parts: [
+            "advice"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.slip`"
           }
         }
       ]

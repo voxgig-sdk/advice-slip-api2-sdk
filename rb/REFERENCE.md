@@ -97,8 +97,8 @@ advice = client.Advice
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `advice` | `String` | No |  |
-| `id` | `Integer` | No |  |
+| `advice` | `String` | No | The advice text |
+| `id` | `Integer` | No | Unique identifier for the advice slip |
 
 ### Operations
 
@@ -150,9 +150,9 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | `String` | No |  |
+| `query` | `String` | No | The search query used |
 | `slips` | `Array` | No |  |
-| `total_results` | `String` | No |  |
+| `total_results` | `String` | No | Total number of results found |
 
 ### Operations
 

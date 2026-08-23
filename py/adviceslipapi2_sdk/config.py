@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "AdviceSlipApi2",
+            "slug": "advice-slip-api2",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,10 +54,12 @@ def make_config():
         "fields": [
           {
             "name": "advice",
+            "short": "The advice text",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique identifier for the advice slip",
             "type": "`$INTEGER`",
           },
         ],
@@ -123,6 +128,7 @@ def make_config():
         "fields": [
           {
             "name": "query",
+            "short": "The search query used",
             "type": "`$STRING`",
           },
           {
@@ -131,6 +137,7 @@ def make_config():
           },
           {
             "name": "total_results",
+            "short": "Total number of results found",
             "type": "`$STRING`",
           },
         ],

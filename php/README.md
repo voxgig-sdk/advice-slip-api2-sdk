@@ -249,8 +249,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `advice` |  |
-| `id` |  |
+| `advice` | The advice text |
+| `id` | Unique identifier for the advice slip |
 
 Operations: Load.
 
@@ -260,9 +260,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `query` |  |
+| `query` | The search query used |
 | `slips` |  |
-| `total_results` |  |
+| `total_results` | Total number of results found |
 
 Operations: Load.
 
@@ -287,8 +287,8 @@ Create an instance: `$advice = $client->Advice();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `string` |  |
-| `id` | `int` |  |
+| `advice` | `string` | The advice text |
+| `id` | `int` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -312,9 +312,9 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `string` |  |
+| `query` | `string` | The search query used |
 | `slips` | `array` |  |
-| `total_results` | `string` |  |
+| `total_results` | `string` | Total number of results found |
 
 #### Example: Load
 

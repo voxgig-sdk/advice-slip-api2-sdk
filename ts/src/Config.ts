@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'AdviceSlipApi2',
+        slug: "advice-slip-api2",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,10 +70,12 @@ class Config {
       "fields": [
         {
           "name": "advice",
+          "short": "The advice text",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the advice slip",
           "type": "`$INTEGER`"
         }
       ],
@@ -131,6 +144,7 @@ class Config {
       "fields": [
         {
           "name": "query",
+          "short": "The search query used",
           "type": "`$STRING`"
         },
         {
@@ -139,6 +153,7 @@ class Config {
         },
         {
           "name": "total_results",
+          "short": "Total number of results found",
           "type": "`$STRING`"
         }
       ],

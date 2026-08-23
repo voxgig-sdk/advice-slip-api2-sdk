@@ -91,8 +91,8 @@ advice = client.Advice()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `advice` | `str` | No |  |
-| `id` | `int` | No |  |
+| `advice` | `str` | No | The advice text |
+| `id` | `int` | No | Unique identifier for the advice slip |
 
 ### Operations
 
@@ -143,9 +143,9 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | `str` | No |  |
+| `query` | `str` | No | The search query used |
 | `slips` | `list` | No |  |
-| `total_results` | `str` | No |  |
+| `total_results` | `str` | No | Total number of results found |
 
 ### Operations
 

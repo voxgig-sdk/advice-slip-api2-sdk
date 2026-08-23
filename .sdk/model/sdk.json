@@ -36,12 +36,14 @@
               "active": true,
               "name": "advice",
               "req": false,
+              "short": "The advice text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the advice slip",
               "type": "`$INTEGER`"
             }
           ],
@@ -123,6 +125,7 @@
               "active": true,
               "name": "query",
               "req": false,
+              "short": "The search query used",
               "type": "`$STRING`"
             },
             {
@@ -135,6 +138,7 @@
               "active": true,
               "name": "total_results",
               "req": false,
+              "short": "Total number of results found",
               "type": "`$STRING`"
             }
           ],

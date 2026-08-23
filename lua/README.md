@@ -226,8 +226,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `advice` |  |
-| `id` |  |
+| `advice` | The advice text |
+| `id` | Unique identifier for the advice slip |
 
 Operations: Load.
 
@@ -237,9 +237,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `query` |  |
+| `query` | The search query used |
 | `slips` |  |
-| `total_results` |  |
+| `total_results` | Total number of results found |
 
 Operations: Load.
 
@@ -264,8 +264,8 @@ Create an instance: `local advice = client:Advice(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `string` |  |
-| `id` | `number` |  |
+| `advice` | `string` | The advice text |
+| `id` | `number` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -288,9 +288,9 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `string` |  |
+| `query` | `string` | The search query used |
 | `slips` | `table` |  |
-| `total_results` | `string` |  |
+| `total_results` | `string` | Total number of results found |
 
 #### Example: Load
 

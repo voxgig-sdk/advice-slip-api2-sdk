@@ -19,6 +19,9 @@ module AdviceSlipApi2Config
     {
       "main" => {
         "name" => "AdviceSlipApi2",
+        "slug" => "advice-slip-api2",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -42,10 +45,12 @@ module AdviceSlipApi2Config
           "fields" => [
             {
               "name" => "advice",
+              "short" => "The advice text",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "Unique identifier for the advice slip",
               "type" => "`$INTEGER`",
             },
           ],
@@ -114,6 +119,7 @@ module AdviceSlipApi2Config
           "fields" => [
             {
               "name" => "query",
+              "short" => "The search query used",
               "type" => "`$STRING`",
             },
             {
@@ -122,6 +128,7 @@ module AdviceSlipApi2Config
             },
             {
               "name" => "total_results",
+              "short" => "Total number of results found",
               "type" => "`$STRING`",
             },
           ],

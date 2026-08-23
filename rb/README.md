@@ -239,8 +239,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `advice` |  |
-| `id` |  |
+| `advice` | The advice text |
+| `id` | Unique identifier for the advice slip |
 
 Operations: Load.
 
@@ -250,9 +250,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `query` |  |
+| `query` | The search query used |
 | `slips` |  |
-| `total_results` |  |
+| `total_results` | Total number of results found |
 
 Operations: Load.
 
@@ -277,8 +277,8 @@ Create an instance: `advice = client.Advice`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `String` |  |
-| `id` | `Integer` |  |
+| `advice` | `String` | The advice text |
+| `id` | `Integer` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -302,9 +302,9 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `String` |  |
+| `query` | `String` | The search query used |
 | `slips` | `Array` |  |
-| `total_results` | `String` |  |
+| `total_results` | `String` | Total number of results found |
 
 #### Example: Load
 

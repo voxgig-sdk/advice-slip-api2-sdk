@@ -102,8 +102,8 @@ fmt.Println(advice.GetName()) // "advice"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `advice` | `string` | No |  |
-| `id` | `int` | No |  |
+| `advice` | `string` | No | The advice text |
+| `id` | `int` | No | Unique identifier for the advice slip |
 
 ### Operations
 
@@ -154,9 +154,9 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `query` | `string` | No |  |
+| `query` | `string` | No | The search query used |
 | `slips` | `[]any` | No |  |
-| `total_results` | `string` | No |  |
+| `total_results` | `string` | No | Total number of results found |
 
 ### Operations
 

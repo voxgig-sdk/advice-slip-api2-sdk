@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "AdviceSlipApi2",
+			"slug": "advice-slip-api2",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,10 +37,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "advice",
+						"short": "The advice text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the advice slip",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -106,6 +111,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "query",
+						"short": "The search query used",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -114,6 +120,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "total_results",
+						"short": "Total number of results found",
 						"type": "`$STRING`",
 					},
 				},

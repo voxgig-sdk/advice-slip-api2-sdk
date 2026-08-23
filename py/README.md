@@ -242,8 +242,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `advice` |  |
-| `id` |  |
+| `advice` | The advice text |
+| `id` | Unique identifier for the advice slip |
 
 Operations: Load.
 
@@ -253,9 +253,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `query` |  |
+| `query` | The search query used |
 | `slips` |  |
-| `total_results` |  |
+| `total_results` | Total number of results found |
 
 Operations: Load.
 
@@ -280,8 +280,8 @@ Create an instance: `advice = client.Advice()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `str` |  |
-| `id` | `int` |  |
+| `advice` | `str` | The advice text |
+| `id` | `int` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -304,9 +304,9 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `str` |  |
+| `query` | `str` | The search query used |
 | `slips` | `list` |  |
-| `total_results` | `str` |  |
+| `total_results` | `str` | Total number of results found |
 
 #### Example: Load
 

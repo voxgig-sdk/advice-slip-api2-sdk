@@ -6,7 +6,7 @@ The Golang SDK for the AdviceSlipApi2 API — an entity-oriented client using st
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Advice(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -259,8 +259,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"advice"` |  |
-| `"id"` |  |
+| `"advice"` | The advice text |
+| `"id"` | Unique identifier for the advice slip |
 
 Operations: Load.
 
@@ -270,9 +270,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `"query"` |  |
+| `"query"` | The search query used |
 | `"slips"` |  |
-| `"total_results"` |  |
+| `"total_results"` | Total number of results found |
 
 Operations: Load.
 
@@ -297,8 +297,8 @@ Create an instance: `advice := client.Advice(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `string` |  |
-| `id` | `int` |  |
+| `advice` | `string` | The advice text |
+| `id` | `int` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -325,9 +325,9 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `string` |  |
+| `query` | `string` | The search query used |
 | `slips` | `[]any` |  |
-| `total_results` | `string` |  |
+| `total_results` | `string` | Total number of results found |
 
 #### Example: Load
 

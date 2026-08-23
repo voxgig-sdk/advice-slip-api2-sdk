@@ -33,6 +33,9 @@ class AdviceSlipApi2Config
         return [
             "main" => [
                 "name" => "AdviceSlipApi2",
+                "slug" => "advice-slip-api2",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,10 +59,12 @@ class AdviceSlipApi2Config
           'fields' => [
             [
               'name' => 'advice',
+              'short' => 'The advice text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique identifier for the advice slip',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -128,6 +133,7 @@ class AdviceSlipApi2Config
           'fields' => [
             [
               'name' => 'query',
+              'short' => 'The search query used',
               'type' => '`$STRING`',
             ],
             [
@@ -136,6 +142,7 @@ class AdviceSlipApi2Config
             ],
             [
               'name' => 'total_results',
+              'short' => 'Total number of results found',
               'type' => '`$STRING`',
             ],
           ],

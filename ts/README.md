@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -286,8 +286,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `advice` |  |
-| `id` |  |
+| `advice` | The advice text |
+| `id` | Unique identifier for the advice slip |
 
 Operations: load.
 
@@ -297,9 +297,9 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
-| `query` |  |
+| `query` | The search query used |
 | `slips` |  |
-| `total_results` |  |
+| `total_results` | Total number of results found |
 
 Operations: load.
 
@@ -324,8 +324,8 @@ Create an instance: `const advice = client.Advice()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `advice` | `string` |  |
-| `id` | `number` |  |
+| `advice` | `string` | The advice text |
+| `id` | `number` | Unique identifier for the advice slip |
 
 #### Example: Load
 
@@ -348,9 +348,9 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `query` | `string` |  |
+| `query` | `string` | The search query used |
 | `slips` | `any[]` |  |
-| `total_results` | `string` |  |
+| `total_results` | `string` | Total number of results found |
 
 #### Example: Load
 
