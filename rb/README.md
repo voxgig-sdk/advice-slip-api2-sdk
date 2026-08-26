@@ -250,6 +250,7 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `query` | The search query used |
 | `slips` |  |
 | `total_results` | Total number of results found |
@@ -302,6 +303,7 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `query` | `String` | The search query used |
 | `slips` | `Array` |  |
 | `total_results` | `String` | Total number of results found |

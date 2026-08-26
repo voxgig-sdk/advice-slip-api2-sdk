@@ -32,6 +32,9 @@ AdviceLoadMatch = Struct.new(
 
 # Search entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] query
 #   @return [String, nil]
 #
@@ -41,6 +44,7 @@ AdviceLoadMatch = Struct.new(
 # @!attribute [rw] total_results
 #   @return [String, nil]
 Search = Struct.new(
+  :id,
   :query,
   :slips,
   :total_results,

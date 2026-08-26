@@ -59,9 +59,12 @@ describe('SearchEntity', async () => {
 
     let search_ref01_data = Object.values(setup.data.existing.search)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const search_ref01_ent = client.Search()
+    const search_ref01_match_dt0: any = {}
+    search_ref01_match_dt0.id = search_ref01_data.id
+    const search_ref01_data_dt0 = (await search_ref01_ent.load(search_ref01_match_dt0)).data()
+    assert(search_ref01_data_dt0.id === search_ref01_data.id)
 
 
   })

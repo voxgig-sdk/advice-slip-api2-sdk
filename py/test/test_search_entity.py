@@ -48,9 +48,13 @@ class TestSearchEntity:
 
         # LOAD
         search_ref01_ent = client.Search(None)
-        search_ref01_match_dt0 = {}
+        search_ref01_match_dt0 = {
+            "id": search_ref01_data["id"],
+        }
         search_ref01_data_dt0_loaded = search_ref01_ent.load(search_ref01_match_dt0, None)
-        assert search_ref01_data_dt0_loaded is not None
+        search_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(search_ref01_data_dt0_loaded))
+        assert search_ref01_data_dt0_load_result is not None
+        assert search_ref01_data_dt0_load_result["id"] == search_ref01_data["id"]
 
 
 

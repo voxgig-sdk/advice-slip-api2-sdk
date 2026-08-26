@@ -28,6 +28,7 @@ module AdviceSlipApi2Config
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -117,6 +118,10 @@ module AdviceSlipApi2Config
         },
         "search" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "query",
               "short" => "The search query used",

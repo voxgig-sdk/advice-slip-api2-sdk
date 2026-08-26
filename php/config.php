@@ -42,6 +42,7 @@ class AdviceSlipApi2Config
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -131,6 +132,10 @@ class AdviceSlipApi2Config
         ],
         'search' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'query',
               'short' => 'The search query used',

@@ -48,9 +48,13 @@ class SearchEntityTest extends TestCase
 
         // LOAD
         $search_ref01_ent = $client->Search(null);
-        $search_ref01_match_dt0 = [];
+        $search_ref01_match_dt0 = [
+            "id" => $search_ref01_data["id"],
+        ];
         $search_ref01_data_dt0_loaded = $search_ref01_ent->load($search_ref01_match_dt0, null);
-        $this->assertNotNull($search_ref01_data_dt0_loaded);
+        $search_ref01_data_dt0_load_result = Helpers::to_map(is_object($search_ref01_data_dt0_loaded) && method_exists($search_ref01_data_dt0_loaded, 'data_get') ? $search_ref01_data_dt0_loaded->data_get() : $search_ref01_data_dt0_loaded);
+        $this->assertNotNull($search_ref01_data_dt0_load_result);
+        $this->assertEquals($search_ref01_data_dt0_load_result["id"], $search_ref01_data["id"]);
 
     }
 }

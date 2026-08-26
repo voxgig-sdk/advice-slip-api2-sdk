@@ -143,6 +143,7 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `query` | `str` | No | The search query used |
 | `slips` | `list` | No |  |
 | `total_results` | `str` | No | Total number of results found |

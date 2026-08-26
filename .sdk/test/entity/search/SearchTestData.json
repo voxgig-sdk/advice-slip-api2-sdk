@@ -2,31 +2,31 @@
   "existing": {
     "search": {
       "SEARCH00": {
-        "query": "s1e",
+        "id": "SEARCH00",
+        "query": "s29",
         "slips": [],
-        "total_results": "s20",
-        "id": "SEARCH00"
+        "total_results": "s2b"
       },
       "SEARCH01": {
-        "query": "s3c",
+        "id": "SEARCH01",
+        "query": "s51",
         "slips": [],
-        "total_results": "s3e",
-        "id": "SEARCH01"
+        "total_results": "s53"
       },
       "SEARCH02": {
-        "query": "s5a",
+        "id": "SEARCH02",
+        "query": "s79",
         "slips": [],
-        "total_results": "s5c",
-        "id": "SEARCH02"
+        "total_results": "s7b"
       }
     }
   },
   "new": {
     "search": {
       "search_ref01": {
-        "query": "s78",
+        "query": "sa1",
         "slips": [],
-        "total_results": "s7a"
+        "total_results": "sa3"
       }
     }
   }

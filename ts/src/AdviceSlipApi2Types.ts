@@ -15,6 +15,7 @@ export interface AdviceLoadMatch {
 }
 
 export interface Search {
+  id?: string
   query?: string
   slips?: any[]
   total_results?: string

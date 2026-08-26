@@ -147,6 +147,7 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `query` | `string` | No | The search query used |
 | `slips` | `table` | No |  |
 | `total_results` | `string` | No | Total number of results found |

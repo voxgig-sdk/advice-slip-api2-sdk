@@ -179,6 +179,7 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `query` | `string` | No | The search query used |
 | `slips` | `any[]` | No |  |
 | `total_results` | `string` | No | Total number of results found |

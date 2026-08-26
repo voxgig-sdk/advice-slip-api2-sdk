@@ -43,7 +43,8 @@ class AdviceEntity extends AdviceSlipApi2EntityBase<Advice> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

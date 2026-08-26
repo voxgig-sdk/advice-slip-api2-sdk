@@ -28,6 +28,7 @@ class AdviceLoadMatch
 /** Search entity data model. */
 class Search
 {
+    public ?string $id = null;
     public ?string $query = null;
     public ?array $slips = null;
     public ?string $total_results = null;

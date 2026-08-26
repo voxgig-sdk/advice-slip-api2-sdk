@@ -6,6 +6,11 @@ main: kit: entity: search: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "query"
       req: false
       short: "The search query used"
@@ -23,6 +28,11 @@ main: kit: entity: search: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "search"
   op: {

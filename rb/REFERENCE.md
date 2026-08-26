@@ -150,6 +150,7 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `query` | `String` | No | The search query used |
 | `slips` | `Array` | No |  |
 | `total_results` | `String` | No | Total number of results found |

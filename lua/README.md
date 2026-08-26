@@ -237,6 +237,7 @@ API path: `/advice/{slip_id}`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `query` | The search query used |
 | `slips` |  |
 | `total_results` | Total number of results found |
@@ -288,6 +289,7 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `query` | `string` | The search query used |
 | `slips` | `table` |  |
 | `total_results` | `string` | Total number of results found |

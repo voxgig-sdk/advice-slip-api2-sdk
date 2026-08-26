@@ -26,6 +26,7 @@ class AdviceLoadMatch(TypedDict):
 
 
 class Search(TypedDict, total=False):
+    id: str
     query: str
     slips: list
     total_results: str

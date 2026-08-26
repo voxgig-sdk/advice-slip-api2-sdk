@@ -44,10 +44,14 @@ describe("SearchEntity", function()
 
     -- LOAD
     local search_ref01_ent = client:Search(nil)
-    local search_ref01_match_dt0 = {}
+    local search_ref01_match_dt0 = {
+      id = search_ref01_data["id"],
+    }
     local search_ref01_data_dt0_loaded, err = search_ref01_ent:load(search_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(search_ref01_data_dt0_loaded)
+    local search_ref01_data_dt0_load_result = helpers.to_map(type(search_ref01_data_dt0_loaded) == 'table' and search_ref01_data_dt0_loaded.data_get and search_ref01_data_dt0_loaded:data_get() or search_ref01_data_dt0_loaded)
+    assert.is_not_nil(search_ref01_data_dt0_load_result)
+    assert.are.equal(search_ref01_data_dt0_load_result["id"], search_ref01_data["id"])
 
   end)
 end)

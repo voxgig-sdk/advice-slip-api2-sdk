@@ -14,6 +14,7 @@
 ---@field id number
 
 ---@class Search
+---@field id? string
 ---@field query? string
 ---@field slips? table
 ---@field total_results? string
