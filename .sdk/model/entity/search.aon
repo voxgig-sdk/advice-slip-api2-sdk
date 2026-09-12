@@ -53,16 +53,22 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/advice/search/{query}"
-          parts: [
-            "advice"
-            "search"
-            "{id}"
-          ]
           rename: {
             param: {
               query: "id"
             }
           }
+          segments: [
+            {
+              lit: "advice"
+            }
+            {
+              lit: "search"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

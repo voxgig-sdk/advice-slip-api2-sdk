@@ -69,6 +69,10 @@ class AdviceSlipApi2Config
               'type' => '`$INTEGER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'advice',
           'op' => [
             'load' => [
@@ -90,13 +94,17 @@ class AdviceSlipApi2Config
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice/{slip_id}',
-                  'parts' => [
-                    'advice',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'slip_id' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'advice',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -108,19 +116,28 @@ class AdviceSlipApi2Config
                     'req' => '`reqdata`',
                     'res' => '`body.slip`',
                   ],
+                  'parts' => [
+                    'advice',
+                    '{id}',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice',
-                  'parts' => [
-                    'advice',
+                  'segments' => [
+                    [
+                      'lit' => 'advice',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.slip`',
+                  ],
+                  'parts' => [
+                    'advice',
                   ],
                 ],
               ],
@@ -151,6 +168,10 @@ class AdviceSlipApi2Config
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'search',
           'op' => [
             'load' => [
@@ -172,14 +193,20 @@ class AdviceSlipApi2Config
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice/search/{query}',
-                  'parts' => [
-                    'advice',
-                    'search',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'query' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'advice',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -190,6 +217,11 @@ class AdviceSlipApi2Config
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'advice',
+                    'search',
+                    '{id}',
                   ],
                 ],
               ],

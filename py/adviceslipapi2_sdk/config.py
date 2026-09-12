@@ -1,6 +1,14 @@
 # AdviceSlipApi2 SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -64,6 +72,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "advice",
         "op": {
           "load": {
@@ -85,15 +97,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/advice/{slip_id}",
-                "parts": [
-                  "advice",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "slip_id": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "advice",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -103,20 +119,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.slip`",
                 },
+                "parts": [
+                  "advice",
+                  "{id}",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/advice",
-                "parts": [
-                  "advice",
+                "segments": [
+                  {
+                    "lit": "advice",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.slip`",
                 },
+                "parts": [
+                  "advice",
+                ],
               },
             ],
           },
@@ -146,6 +171,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "search",
         "op": {
           "load": {
@@ -167,16 +196,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/advice/search/{query}",
-                "parts": [
-                  "advice",
-                  "search",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "query": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "advice",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -186,6 +221,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "advice",
+                  "search",
+                  "{id}",
+                ],
               },
             ],
           },

@@ -43,15 +43,19 @@ main: kit: entity: advice: {
           }
           method: "GET"
           orig: "/advice/{slip_id}"
-          parts: [
-            "advice"
-            "{id}"
-          ]
           rename: {
             param: {
               slip_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "advice"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -65,8 +69,10 @@ main: kit: entity: advice: {
         {
           method: "GET"
           orig: "/advice"
-          parts: [
-            "advice"
+          segments: [
+            {
+              lit: "advice"
+            }
           ]
           transform: {
             req: "`reqdata`"
