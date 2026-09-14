@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2'
+import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2-sdk'
 
 const client = new AdviceSlipApi2SDK()
 ```
@@ -443,7 +443,7 @@ advice-slip-api2/
 Import the SDK from the package root:
 
 ```ts
-import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2'
+import { AdviceSlipApi2SDK } from '@voxgig-sdk/advice-slip-api2-sdk'
 ```
 
 ### Entity state
