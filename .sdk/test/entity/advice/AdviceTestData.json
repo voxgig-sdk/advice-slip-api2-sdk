@@ -21,5 +21,126 @@
         "advice": "s50"
       }
     }
+  },
+  "requests": {
+    "GET /advice/{slip_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAdviceById",
+        "parameters": [
+          {
+            "description": "The ID of the advice slip to retrieve",
+            "in": "path",
+            "name": "slip_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "slip": {
+                    "advice": "Always be yourself.",
+                    "id": 123
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "slip": {
+                      "properties": {
+                        "advice": {
+                          "description": "The advice text",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Unique identifier for the advice slip",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with specific advice"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "properties": {
+                        "text": {
+                          "description": "Message text",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type of message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Advice slip not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /advice": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomAdvice",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "slip": {
+                    "advice": "Always be yourself.",
+                    "id": 123
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "slip": {
+                      "properties": {
+                        "advice": {
+                          "description": "The advice text",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Unique identifier for the advice slip",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with random advice"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

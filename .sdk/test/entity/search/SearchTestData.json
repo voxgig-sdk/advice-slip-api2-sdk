@@ -29,5 +29,109 @@
         "total_results": "sa3"
       }
     }
+  },
+  "requests": {
+    "GET /advice/search/{query}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchAdvice",
+        "parameters": [
+          {
+            "description": "The search term to find matching advice slips",
+            "in": "path",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "query": "love",
+                  "slips": [
+                    {
+                      "advice": "Love yourself first.",
+                      "id": 56
+                    },
+                    {
+                      "advice": "Spread love wherever you go.",
+                      "id": 89
+                    }
+                  ],
+                  "total_results": "2"
+                },
+                "schema": {
+                  "properties": {
+                    "query": {
+                      "description": "The search query used",
+                      "type": "string"
+                    },
+                    "slips": {
+                      "items": {
+                        "properties": {
+                          "advice": {
+                            "description": "The advice text",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the advice slip",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total_results": {
+                      "description": "Total number of results found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with matching advice slips"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": {
+                    "text": "No advice slips found matching that search term.",
+                    "type": "notice"
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "properties": {
+                        "text": {
+                          "description": "Message text",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "Type of message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No advice slips found matching the search term"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

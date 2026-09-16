@@ -4,7 +4,10 @@ declare(strict_types=1);
 // AdviceSlipApi2 SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class AdviceSlipApi2Features
@@ -14,8 +17,14 @@ class AdviceSlipApi2Features
         switch ($name) {
             case "base":
                 return new AdviceSlipApi2BaseFeature();
+            case "ratelimit":
+                return new AdviceSlipApi2RatelimitFeature();
+            case "retry":
+                return new AdviceSlipApi2RetryFeature();
             case "test":
                 return new AdviceSlipApi2TestFeature();
+            case "timeout":
+                return new AdviceSlipApi2TimeoutFeature();
             default:
                 return new AdviceSlipApi2BaseFeature();
         }
@@ -31,7 +40,10 @@ class AdviceSlipApi2Features
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
