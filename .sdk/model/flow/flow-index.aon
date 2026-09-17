@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicAdviceFlow.aon"
-@"BasicSearchFlow.aon"
+@"./BasicAdviceFlow.aon"
+@"./BasicSearchFlow.aon"
