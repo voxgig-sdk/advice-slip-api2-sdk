@@ -114,13 +114,15 @@ class AdviceSlipApi2Config
           'fields' => [
             [
               'name' => 'advice',
-              'short' => 'The advice text',
+              'title' => 'Advice',
               'type' => '`$STRING`',
+              'short' => 'The advice text',
             ],
             [
               'name' => 'id',
-              'short' => 'Unique identifier for the advice slip',
+              'title' => 'Id',
               'type' => '`$INTEGER`',
+              'short' => 'Unique identifier for the advice slip',
             ],
           ],
           'id' => [
@@ -134,25 +136,9 @@ class AdviceSlipApi2Config
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'slip_id',
-                        'reqd' => true,
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice/{slip_id}',
-                  'rename' => [
-                    'param' => [
-                      'slip_id' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'advice',
@@ -161,22 +147,37 @@ class AdviceSlipApi2Config
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'advice',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'slip_id' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.slip`',
                   ],
-                  'parts' => [
-                    'advice',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'slip_id',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice',
@@ -185,14 +186,16 @@ class AdviceSlipApi2Config
                       'lit' => 'advice',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'advice',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.slip`',
                   ],
-                  'parts' => [
-                    'advice',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -205,21 +208,25 @@ class AdviceSlipApi2Config
           'fields' => [
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'query',
-              'short' => 'The search query used',
+              'title' => 'Query',
               'type' => '`$STRING`',
+              'short' => 'The search query used',
             ],
             [
               'name' => 'slips',
+              'title' => 'Slips',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'total_results',
-              'short' => 'Total number of results found',
+              'title' => 'Total Results',
               'type' => '`$STRING`',
+              'short' => 'Total number of results found',
             ],
           ],
           'id' => [
@@ -233,25 +240,9 @@ class AdviceSlipApi2Config
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'query',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/advice/search/{query}',
-                  'rename' => [
-                    'param' => [
-                      'query' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'advice',
@@ -263,19 +254,35 @@ class AdviceSlipApi2Config
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'advice',
+                    'search',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'query' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'advice',
-                    'search',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'query',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],

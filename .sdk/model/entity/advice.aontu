@@ -1,0 +1,100 @@
+# Entity: advice
+
+main: kit: entity: advice: {
+
+  alias: field: {}
+
+  fields: {
+    advice: {
+      h: "Advice"
+      n: "advice"
+      r: false
+      sh: "The advice text"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the advice slip"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "advice"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /advice/{slip_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "slip_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/advice/{slip_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              slip_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "advice"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.slip`"
+          }
+        }
+        {
+          co: {
+            id: "GET /advice"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/advice"
+          s: [
+            {
+              lit: "advice"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.slip`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

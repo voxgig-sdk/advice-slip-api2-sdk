@@ -1,0 +1,97 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: false
+      sh: "The search query used"
+      t: "`$STRING`"
+    }
+    slips: {
+      h: "Slips"
+      n: "slips"
+      r: false
+      t: "`$ARRAY`"
+    }
+    total_results: {
+      h: "Total Results"
+      n: "total_results"
+      r: false
+      sh: "Total number of results found"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "search"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /advice/search/{query}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/advice/search/{query}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              query: "id"
+            }
+          }
+          s: [
+            {
+              lit: "advice"
+            }
+            {
+              lit: "search"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

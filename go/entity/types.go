@@ -1,7 +1,7 @@
 // Typed models for the AdviceSlipApi2 SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Advice is the typed data model for the advice entity.
 type Advice struct {
-	Advice *string `json:"advice,omitempty"`
-	Id *int `json:"id,omitempty"`
 }
 
 // AdviceLoadMatch is the typed request payload for Advice.LoadTyped.
@@ -25,10 +23,6 @@ type AdviceLoadMatch struct {
 
 // Search is the typed data model for the search entity.
 type Search struct {
-	Id *string `json:"id,omitempty"`
-	Query *string `json:"query,omitempty"`
-	Slips *[]any `json:"slips,omitempty"`
-	TotalResults *string `json:"total_results,omitempty"`
 }
 
 // SearchLoadMatch is the typed request payload for Search.LoadTyped.
