@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 AdviceSlipApi2Utility.registrar = ->(u) {
   u.clean = AdviceSlipApi2Utilities::Clean
+  u.clean_add = AdviceSlipApi2Utilities::CleanAdd
+  u.clean_explain = AdviceSlipApi2Utilities::CleanExplain
   u.done = AdviceSlipApi2Utilities::Done
   u.make_error = AdviceSlipApi2Utilities::MakeError
   u.feature_add = AdviceSlipApi2Utilities::FeatureAdd

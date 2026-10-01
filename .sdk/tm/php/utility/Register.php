@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 AdviceSlipApi2Utility::setRegistrar(function (AdviceSlipApi2Utility $u): void {
     $u->clean = [AdviceSlipApi2Clean::class, 'call'];
+    $u->clean_add = [AdviceSlipApi2Clean::class, 'add'];
+    $u->clean_explain = [AdviceSlipApi2Done::class, 'clean_explain'];
     $u->done = [AdviceSlipApi2Done::class, 'call'];
     $u->make_error = [AdviceSlipApi2MakeError::class, 'call'];
     $u->feature_add = [AdviceSlipApi2FeatureAdd::class, 'call'];
