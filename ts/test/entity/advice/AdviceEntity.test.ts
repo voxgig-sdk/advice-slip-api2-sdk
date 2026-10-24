@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { AdviceSlipApi2SDK, BaseFeature, stdutil } from '../../..'
+import { AdviceSlipApi2SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('AdviceEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = AdviceSlipApi2SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Advice().load({"id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ADVICE_SLIP_API2_TEST_LIVE
@@ -51,7 +63,7 @@ describe('AdviceEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"advice":{"a":true,"h":"Advice","n":"advice","r":false,"sh":"The advice text","t":"`$STRING`","key$":"advice","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the advice slip","t":"`$INTEGER`","key$":"id","index$":1}},"id":{"field":"id","name":"id"},"name":"advice","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /advice/{slip_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"slip_id","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/advice/{slip_id}","q":{"exist":["id"]},"r":{"param":{"slip_id":"id"}},"s":[{"lit":"advice"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body.slip`"},"index$":0},{"a":true,"co":{"id":"GET /advice","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/advice","q":{},"r":{},"s":[{"lit":"advice"}],"t":{"req":"`reqdata`","res":"`body.slip`"},"index$":1}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"advice","name__orig":"advice","Name":"Advice","name_":"advice","name-":"advice","NAME":"ADVICE","index$":0}, {"active":true,"entity":"advice","key$":"BasicAdviceFlow","kind":"basic","name":"BasicAdviceFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"advice_ref01","srcdatavar":"advice_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-advice_ref01"}}],"index$":0}]}, 'Advice', {"GET /advice/{slip_id}":{"protocol":"http","parameters":[{"name":"slip_id","in":"path","required":true,"description":"The ID of the advice slip to retrieve","schema":{"type":"integer"},"index$":0}]},"GET /advice":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"advice":{"a":true,"h":"Advice","n":"advice","r":false,"sh":"The advice text","t":"`$STRING`","key$":"advice","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the advice slip","t":"`$INTEGER`","key$":"id","index$":1}},"id":{"field":"id","name":"id"},"name":"advice","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /advice/{slip_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"slip_id","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/advice/{slip_id}","q":{"exist":["id"]},"r":{"param":{"slip_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"advice"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body.slip`"},"index$":0},{"a":true,"co":{"id":"GET /advice","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/advice","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"advice"}],"t":{"req":"`reqdata`","res":"`body.slip`"},"index$":1}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"advice","name__orig":"advice","Name":"Advice","name_":"advice","name-":"advice","NAME":"ADVICE","index$":0}, {"active":true,"entity":"advice","key$":"BasicAdviceFlow","kind":"basic","name":"BasicAdviceFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"advice_ref01","srcdatavar":"advice_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-advice_ref01"}}],"index$":0}]}, 'Advice', {"GET /advice/{slip_id}":{"protocol":"http","parameters":[{"name":"slip_id","in":"path","required":true,"description":"The ID of the advice slip to retrieve","schema":{"type":"integer"},"index$":0}]},"GET /advice":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('AdviceEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

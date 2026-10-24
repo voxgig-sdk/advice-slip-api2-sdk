@@ -4,6 +4,7 @@ declare(strict_types=1);
 // AdviceSlipApi2 SDK utility: make_fetch_def
 
 require_once __DIR__ . '/../core/Result.php';
+require_once __DIR__ . '/Media.php';
 
 class AdviceSlipApi2MakeFetchDef
 {
@@ -28,7 +29,7 @@ class AdviceSlipApi2MakeFetchDef
 
         $fetchdef = ['url' => $url, 'method' => $spec->method, 'headers' => $spec->headers];
         if ($spec->body !== null) {
-            $fetchdef['body'] = is_array($spec->body) ? \Voxgig\Struct\Struct::jsonify($spec->body) : $spec->body;
+            $fetchdef['body'] = AdviceSlipApi2Media::requestBody($ctx->point, $spec->body);
         }
 
         return [$fetchdef, null];

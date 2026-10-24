@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Production server",
+      "Successful response with matching advice slips",
+      "Successful response with random advice",
+      "Successful response with specific advice",
+      "The advice text",
+      "The search query used",
+      "This API provides random pieces of advice to users, enabling them to receive thoughtful suggestions on various topics. Users can easily retrieve advice slips in a straightforward manner through simple API calls.",
+      "Total number of results found",
+      "Unique identifier for the advice slip"
+    ]
+  }
 }

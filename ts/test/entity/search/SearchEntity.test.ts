@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { AdviceSlipApi2SDK, BaseFeature, stdutil } from '../../..'
+import { AdviceSlipApi2SDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('SearchEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = AdviceSlipApi2SDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Search().load({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ADVICE_SLIP_API2_TEST_LIVE
@@ -51,7 +63,7 @@ describe('SearchEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0},"query":{"a":true,"h":"Query","n":"query","r":false,"sh":"The search query used","t":"`$STRING`","key$":"query","index$":1},"slips":{"a":true,"h":"Slips","n":"slips","r":false,"t":"`$ARRAY`","key$":"slips","index$":2},"total_results":{"a":true,"h":"Total Results","n":"total_results","r":false,"sh":"Total number of results found","t":"`$STRING`","key$":"total_results","index$":3}},"id":{"field":"id","name":"id"},"name":"search","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /advice/search/{query}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"query","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/advice/search/{query}","q":{"exist":["id"]},"r":{"param":{"query":"id"}},"s":[{"lit":"advice"},{"lit":"search"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"search","name__orig":"search","Name":"Search","name_":"search","name-":"search","NAME":"SEARCH","index$":1}, {"active":true,"entity":"search","key$":"BasicSearchFlow","kind":"basic","name":"BasicSearchFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"search_ref01","srcdatavar":"search_ref01_data","suffix":"_dt0"},"m":{"id":"search01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-search_ref01"}}],"index$":0}]}, 'Search', {"GET /advice/search/{query}":{"protocol":"http","parameters":[{"name":"query","in":"path","required":true,"description":"The search term to find matching advice slips","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0},"query":{"a":true,"h":"Query","n":"query","r":false,"sh":"The search query used","t":"`$STRING`","key$":"query","index$":1},"slips":{"a":true,"h":"Slips","n":"slips","r":false,"t":"`$ARRAY`","key$":"slips","index$":2},"total_results":{"a":true,"h":"Total Results","n":"total_results","r":false,"sh":"Total number of results found","t":"`$STRING`","key$":"total_results","index$":3}},"id":{"field":"id","name":"id"},"name":"search","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /advice/search/{query}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"query","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/advice/search/{query}","q":{"exist":["id"]},"r":{"param":{"query":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"advice"},{"lit":"search"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"search","name__orig":"search","Name":"Search","name_":"search","name-":"search","NAME":"SEARCH","index$":1}, {"active":true,"entity":"search","key$":"BasicSearchFlow","kind":"basic","name":"BasicSearchFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"search_ref01","srcdatavar":"search_ref01_data","suffix":"_dt0"},"m":{"id":"search01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-search_ref01"}}],"index$":0}]}, 'Search', {"GET /advice/search/{query}":{"protocol":"http","parameters":[{"name":"query","in":"path","required":true,"description":"The search term to find matching advice slips","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('SearchEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

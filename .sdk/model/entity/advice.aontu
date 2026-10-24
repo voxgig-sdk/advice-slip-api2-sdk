@@ -60,6 +60,10 @@ main: kit: entity: advice: {
               slip_id: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "advice"
@@ -81,6 +85,10 @@ main: kit: entity: advice: {
           }
           m: "GET"
           o: "/advice"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "advice"

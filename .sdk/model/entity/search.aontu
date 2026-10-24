@@ -72,6 +72,10 @@ main: kit: entity: search: {
               query: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "advice"
